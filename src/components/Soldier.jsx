@@ -9,7 +9,10 @@ require('../sass/animation.scss');
 export default class Soldier extends React.Component {
 
     render() {
+
+       
         return (
+            
             <section id="shooter-container">
                 <section className="shooting-elements-container">
                     <div className="head-container">

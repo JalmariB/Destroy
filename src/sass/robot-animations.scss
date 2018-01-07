@@ -1,0 +1,44 @@
+
+.eye-light {
+    -webkit-animation-name: eye-flash ; 
+    -webkit-animation-duration: 2,s; 
+    animation-name: eye-flash ;
+    animation-duration:2s;
+    animation-iteration-count: infinite;
+
+}
+.find {
+    -webkit-animation-name: find ; 
+    -webkit-animation-duration: 0.5,s; 
+    animation-name: find ;
+    animation-duration:.5s;
+    animation-iteration-count: infinite;
+}
+#robot-container {
+    -webkit-animation-name:  t; 
+    -webkit-animation-duration: 65; 
+    animation-name: t ;
+    animation-duration:65s;
+    animation-iteration-count: infinite;
+}
+
+
+@keyframes moving {
+    0% {right: 200px;}
+    100% {right: 20000px;}
+}
+
+@keyframes eye-flash {
+    0% {background: #bd2005;}
+    50% {background: #ff330f;}
+    100% {background: #a21c04;}
+}
+
+
+@keyframes find {
+    0% {opacity:1;
+        margin-top:5px}
+
+    100% {opacity:0;
+        margin-top:65px}
+}
