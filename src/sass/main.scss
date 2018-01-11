@@ -4,22 +4,23 @@
 body {
   margin:0;
   font-family: 'Lato', sans-serif;
-  color:rgb(206, 58, 58);
-  background-color: rgb(195, 45, 45);
+  background-color: #222;
 
 
 
 
   .primary-button {
+    transition:.3s all;
     padding: 15px;
+    color:#f2f2f2;
     background-color: transparent;
-    border:1px solid #222;
+    border:1px solid #f2f2f2;
     min-width: 120px;
     
   }
 
   .primary-button:hover {
-
+    background-color:#ce3a3a;
   }
 
 

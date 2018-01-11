@@ -7,17 +7,17 @@ require('../sass/main.scss');
 
 export default class Game extends Component {
 
-    renderRobotComponent() {
-       
+/*     renderRobotComponent() {
         $(".game-container").append('' + <Robot /> + '');
         return <Robot />;
 
-    }
+    } */
     renderRobotComponents(numberOfRobots) {
         var robotArray = [];
 
         for (var i = 0; i < numberOfRobots; i++) {
             robotArray.push(<Robot />)
+
 
         }
 
@@ -32,7 +32,7 @@ export default class Game extends Component {
         return (
             <section className="game-container">
                 <Soldier />
-                {this.renderRobotComponents(5)}
+                {this.renderRobotComponents(this.props.howManyRobots)}
             </section>
         );
     }

@@ -12,7 +12,7 @@ export default class Main extends Component {
     this.state = {
       showGameStartComponent: true,
       showGameComponent: false,
-      howManyRobots: 0,
+      howManyRobots: 5,
     }
     
     
@@ -20,23 +20,25 @@ export default class Main extends Component {
   }
 
 
-  handleClickFromGameStart() {
+  handleClickFromGameStart(numbersOfRobots) {
+   console.log('number of robots', numbersOfRobots)
    
    this.setState({
      showGameStartComponent: false,
      showGameComponent: true,
+     howManyRobots: numbersOfRobots
      
      
    });
   }
 
   render() {
-    console.log('handler')
+    
 
     return (
      <section className="main-container">
         {this.state.showGameStartComponent ? <GameStart handleClickFromGameStart={this.handleClickFromGameStart.bind(this)}/> : null}
-        {this.state.showGameComponent ? <Game /> : null}
+        {this.state.showGameComponent ? <Game howManyRobots={this.state.howManyRobots} /> : null}
      </section>
       );
   }

@@ -7,18 +7,22 @@ require('../sass/robot-animations.scss');
 
 
 export default class Robot extends React.Component {
-
-
-
-
+    headOff(e) {
+       var $current = $(e.currentTarget);
+        $current.addClass('head-off');    
+    }
+        
 
     render() {
-
+      /*   var x = Math.floor((Math.random() * 500) + 1);
+        console.log(x)
+        $('.robot-container').length;
+        $('.robot-container').css({bottom: x, right: x}) */
 
         return (
 
-            <section id="robot-container">
-                <div className="rb-head-container">
+            <section className="robot-container">
+                <div className="rb-head-container" onClick={this.headOff}>
                     <div className="rb-head">
                         <div className="rb-eye">
                             <div className="eye-light"></div>
@@ -28,16 +32,9 @@ export default class Robot extends React.Component {
                     <div className="rb-head-occipital"></div>
                     <div className="rb-head-chin"></div>
                 </div>
-
                 <div className="rb-neck"></div>
-
-
-
-
                 <div className="rb-right-shoulder"> </div>
-                <section className="right-arm-container">
-                    
-                
+                <section className="right-arm-container"> 
                     <div className="arm"></div>
                     <div className="arm-joint"></div>
                     <div className="arm-bottom"></div>

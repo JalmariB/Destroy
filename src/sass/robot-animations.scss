@@ -15,17 +15,53 @@
     animation-iteration-count: infinite;
 }
 #robot-container {
-    -webkit-animation-name:  t; 
-    -webkit-animation-duration: 65; 
-    animation-name: t ;
-    animation-duration:65s;
+    -webkit-animation-name:flying; 
+    -webkit-animation-duration: 3s; 
+    animation-name:flying;
+    animation-duration:3s;
     animation-iteration-count: infinite;
+}
+.head-off {
+      -webkit-animation-name:head-off; 
+    -webkit-animation-duration: 3s ; 
+    animation-name:head-off ;
+    animation-duration:3s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
 }
 
 
 @keyframes moving {
     0% {right: 200px;}
     100% {right: 20000px;}
+}
+@keyframes flying {
+    0% {    bottom: 75%;}
+    50% {bottom: 78%;}
+    100% {bottom: 75%;}
+   
+
+    
+}
+
+@keyframes head-off {
+    0% {
+        top:0;
+        left:0;
+        
+
+    }
+
+    30% {
+        opacity:1;
+        transform: rotate(20deg);
+    }
+    100%{
+        opacity:0;
+        
+        top:-600px;
+        left:600px;
+    }
 }
 
 @keyframes eye-flash {
