@@ -1,0 +1,56 @@
+.hit-container {
+    position: fixed;
+    top:40%;
+    left:40%;
+    height: 30px;
+    width: 30px;
+    background-color: transparent;
+
+    span {
+        position: absolute;
+        bottom:0%;
+        right:0%;
+        width: 30px;
+        height: 3px;
+        opacity: 0;
+       
+    }
+    .fragment-one {
+        transform: rotate(66deg);
+    border-right: 10px solid transparent;
+    border-left: 2px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-top: 4px solid #ccc;
+    z-index: 3;
+    }
+    .fragment-two{
+        transform: rotate(109deg);
+    border-right: 10px solid transparent;
+    border-left: 2px solid transparent;
+    border-bottom: 13px solid transparent;
+    border-top: 6px solid #fff;
+    z-index: 3;
+    
+    }
+    .fragment-tre{
+       transform: rotate(110deg);
+    border-right: 10px solid transparent;
+    border-left: 2px solid transparent;
+    border-bottom: 18px solid transparent;
+    border-top: 6px solid #f2f2f2;
+    z-index: 3;
+
+    
+    }
+    .fragment-four {
+       transform: rotate(17deg);
+    border-right: 10px solid transparent;
+    border-left: 2px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-top: 8px solid #ccc;
+    z-index: 3;
+    top: 20px;
+    }
+
+
+}

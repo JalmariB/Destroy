@@ -7,62 +7,111 @@
     animation-iteration-count: infinite;
 
 }
-.find {
-    -webkit-animation-name: find ; 
+.wind {
+    -webkit-animation-name: wind ; 
     -webkit-animation-duration: 0.5,s; 
-    animation-name: find ;
+    animation-name: wind ;
     animation-duration:.5s;
     animation-iteration-count: infinite;
 }
-#robot-container {
+.robot-container {
     -webkit-animation-name:flying; 
     -webkit-animation-duration: 3s; 
     animation-name:flying;
     animation-duration:3s;
     animation-iteration-count: infinite;
 }
-.head-off {
-      -webkit-animation-name:head-off; 
-    -webkit-animation-duration: 3s ; 
-    animation-name:head-off ;
-    animation-duration:3s;
+.headshot {
+   /*    -webkit-animation-name:headshot; 
+    -webkit-animation-duration: 0.2s ; 
+    animation-name:headshot ;
+    animation-duration:0.2s;
     animation-iteration-count: 1;
+    animation-fill-mode: forwards; */
+   /*  transform-origin: center; */
+   transform: rotate(20deg);
+   transition: transform .05s linear;
+  transform-origin: center center;
+  transform-style: preserve-3D;
+}
+.calf-rotate {
+     -webkit-animation-name:calf-rotate; 
+    -webkit-animation-duration: .5s; 
+    animation-name:calf-rotate;
+    animation-duration:.5s;
+    animation-delay:0.5s;
     animation-fill-mode: forwards;
 }
 
+.robot-down {
+      -webkit-animation-name:robot-down; 
+    -webkit-animation-duration:1s; 
+    animation-name:robot-down;
+    animation-duration:1s;
+    animation-delay:.5s;
+    animation-fill-mode: forwards;
+}
+/* .robot-face-down {
+      -webkit-animation-name:robot-face-down; 
+    -webkit-animation-duration: 1s; 
+    animation-name:robot-face-down;
+    animation-duration:1s;
+    animation-delay:2s;
+    animation-fill-mode: forwards;
+} */
+
+@keyframes robot-down {
+    0%{
+
+    }
+    50% {bottom:-80px;
+        transform: rotate(-0deg);
+    }
+    100% {
+        transform: rotate(-76deg);
+        bottom:-120px;
+    }
+}
+/* @keyframes robot-face-down {
+    0%{
+
+    }
+    100% {
+        transform: rotate(-76deg);
+    }
+} */
+
+@keyframes calf-rotate {
+    0% {
+        transform: rotate(deg);
+
+    }
+    100% {
+        transform: rotate(-86deg);
+        
+    }
+}
 
 @keyframes moving {
     0% {right: 200px;}
     100% {right: 20000px;}
 }
 @keyframes flying {
-    0% {    bottom: 75%;}
+    0% {    bottom: 30%;}
     50% {bottom: 78%;}
-    100% {bottom: 75%;}
-   
-
-    
+    100% {bottom: 30%;}
 }
 
-@keyframes head-off {
+/* @keyframes hit {
     0% {
-        top:0;
-        left:0;
-        
-
-    }
-
-    30% {
-        opacity:1;
-        transform: rotate(20deg);
+        transform: rotate(0deg);
+        transform-origin: center;   
     }
     100%{
-        opacity:0;
-        
-        top:-600px;
-        left:600px;
+       transform: rotate(20deg);
+       transform-origin: center;
     }
-}
+} */
 
 @keyframes eye-flash {
     0% {background: #bd2005;}
@@ -71,10 +120,20 @@
 }
 
 
-@keyframes find {
+@keyframes wind {
     0% {opacity:1;
         margin-top:5px}
 
     100% {opacity:0;
         margin-top:65px}
+}
+
+@keyframes calf-down {
+    0% {
+        transform: rotate(-7deg);
+
+    }
+    100% {
+        transform: rotate(-92deg);
+    }
 }

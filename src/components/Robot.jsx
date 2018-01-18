@@ -7,22 +7,28 @@ require('../sass/robot-animations.scss');
 
 
 export default class Robot extends React.Component {
-    headOff(e) {
+    headShot(e) {
        var $current = $(e.currentTarget);
-        $current.addClass('head-off');    
+        $current.addClass('headshot');
+        $('.robot-container').addClass('robot-down')
+        $('.wind-container').hide();
+        $('.calf').addClass('calf-rotate');
+        $('.robot-container').css({
+            animationIterationCount: 1,
+        })
+        /* $('.robot-container').addClass('robot-face-down'); */
+
     }
-        
+   
+
+
 
     render() {
-      /*   var x = Math.floor((Math.random() * 500) + 1);
-        console.log(x)
-        $('.robot-container').length;
-        $('.robot-container').css({bottom: x, right: x}) */
 
         return (
 
-            <section className="robot-container">
-                <div className="rb-head-container" onClick={this.headOff}>
+            <section className="robot-container" onMouseEnter={this.props.aim} onMouseLeave={this.props.defaultAim} onMouseDown={this.props.shoot} onMouseUp={this.props.stopShooting}>
+                <div className="rb-head-container" onClick={this.headShot} >
                     <div className="rb-head">
                         <div className="rb-eye">
                             <div className="eye-light"></div>
@@ -46,26 +52,11 @@ export default class Robot extends React.Component {
                             <span></span>
                         </div>
                         
-                    </div>
-                  
-               
+                    </div>   
                 </section>
-                    
-
-
-
-
-
-
-
-
-
-
+                
                 <div className="rb-torso"></div>
-
                 <div className="rb-stomach"></div>
-
-
                 <div className="rb-pelvis"></div>
                 <div className="rb-right-leg">
                     <div className="pelvis-joint"></div>
@@ -73,11 +64,10 @@ export default class Robot extends React.Component {
                     <div className="thight-joint"></div>
                     <section className="calf-container"></section>
                         <div className="calf">
-
-                        <div className="find-container">
-                            <div className="find"></div>
-                            <div className="find"></div>
-                            <div className="find"></div>
+                        <div className="wind-container">
+                            <div className="wind"></div>
+                            <div className="wind"></div>
+                            <div className="wind"></div>
                         </div>
                         
                         </div>

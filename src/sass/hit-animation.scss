@@ -1,0 +1,93 @@
+
+.fragment-one-animation,
+.fragment-two-animation,
+.fragment-tre-animation,
+.fragment-four-animation {
+    -webkit-animation-duration: .2,s; 
+    animation-duration: 0.2s;
+    animation-iteration-count: infinite;
+}
+.fragment-one-animation {
+      -webkit-animation-name:fragment-one; 
+    animation-name: fragment-one ;
+}
+.fragment-two-animation {
+      -webkit-animation-name:fragment-two; 
+    animation-name: fragment-two ;
+}
+.fragment-tre-animation {
+      -webkit-animation-name:fragment-tre; 
+    animation-name: fragment-tre ;
+}
+.fragment-four-animation {
+      -webkit-animation-name:fragment-four; 
+    animation-name: fragment-four ;
+}
+
+@keyframes fragment-one {
+    0% {
+       /*  transform: rotate(0deg); */
+        top: 0px;
+        right:0px;
+        opacity:1;
+    }
+    80% {
+        opacity: 1;
+
+    }
+    100% {
+       /*  transform: rotate(360deg); */
+        top: -16px;
+        right: 20px;
+        opacity:0;
+    }
+}
+@keyframes fragment-two {
+    0% {
+       /*  transform: rotate(0deg); */
+        top: 0px;
+        right:0px;
+        opacity:1;
+    }
+     80% {
+        opacity: 1;
+
+    }
+    100% {
+        /* transform: rotate(83deg); */
+        top: -19px;
+        right: 10px;
+        opacity:0;
+    }
+}
+
+@keyframes fragment-tre {
+    0% {
+        top: -9px;
+        opacity:1;
+    }
+     80% {
+        opacity: 1;
+
+    }
+    100% {
+        opacity:0;
+        top: -50px;
+    }
+}
+
+
+@keyframes fragment-four {
+    0% {
+        right:0;
+        opacity:1;
+    }
+    80% {
+        opacity: 1;
+
+    }
+    100% {
+        opacity:0;
+        right: 30px;
+    }
+}
