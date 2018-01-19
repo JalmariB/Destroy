@@ -9,15 +9,9 @@ require('../sass/hit-animation.scss')
 
 export default class Game extends Component {
 
-/*     renderRobotComponent() {
-        $(".game-container").append('' + <Robot /> + '');
-        return <Robot />;
-
-    } */
 
     walk(key) {
         if (key.key == 'ArrowRight') {
-            console.log('ArrowRight')
             $('.right-leg-thigh').addClass('right-leg-thigh-animation')
             $('.right-leg-calf').addClass('right-leg-calf-animation')
             $('.right-leg-foot').addClass('right-leg-foot-animation')
@@ -34,7 +28,6 @@ export default class Game extends Component {
             $('.right-leg-foot').removeClass('right-leg-foot-animation')
 
             /* left leg */
-
             $('.left-leg-thigh').removeClass('left-leg-thigh-animation')
             $('.left-leg-calf').removeClass('left-leg-calf-animation')
             $('.left-leg-foot').removeClass('left-leg-foot-animation')
@@ -69,7 +62,6 @@ export default class Game extends Component {
 
 
     hit(){
-      
         $(document).on("mousemove", function (event) {
             var mouseXPosition = event.pageX;
             var mouseYPosition = event.pageY;
@@ -79,7 +71,6 @@ export default class Game extends Component {
                 left: mouseXPosition
             }) 
         });
-    
         $('.fragment-one').addClass('fragment-one-animation');
         $('.fragment-two').addClass('fragment-two-animation');
         $('.fragment-tre').addClass('fragment-tre-animation');
@@ -98,7 +89,6 @@ export default class Game extends Component {
 
 
     shoot() {
-        console.log('shoot')
         $('.hands-container').addClass('hands-animation-shooting')
         $('#shooter-container').addClass('shooting-lights')
         this.hit()
@@ -106,7 +96,6 @@ export default class Game extends Component {
 
     }
     stopShooting() {
-        console.log('stop shoot')
         $('.hands-container').removeClass('hands-animation-shooting')
         $('#shooter-container').removeClass('shooting-lights')
         this.removeHitAnimation()
