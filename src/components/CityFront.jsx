@@ -1,15 +1,15 @@
 import React from 'react';
-import {Component} from 'react'
+import { Component } from 'react'
 
 require('../sass/background.scss');
 
 
-export default class CityBack extends Component {
+export default class CityFront extends Component {
 
-    render () {
+    render() {
 
-        return(
-            <section className="city-back-container">
+        return (
+            <section className="city-front-container">
                 <div className="building-1"></div>
                 <div className="building-2"></div>
                 <div className="building-3"></div>
@@ -23,7 +23,7 @@ export default class CityBack extends Component {
                 <div className="building-10"></div>
                 <div className="building-11"></div>
                 <div className="building-12"></div>
-                <div className="building-13"></div>
+                
             </section>
 
         );
