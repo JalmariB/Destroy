@@ -36,22 +36,27 @@
     height: 400px;
     width:200px;
     left:60px; 
+    z-index: 4;
    
 
     
 /* SHOOTING ELEMENTS CONTAINER  */
 .shooting-elements-container {
-    -ms-transform: rotate(-107deg); /* IE 9 */
-    -webkit-transform: rotate(-107deg); /* Safari */
-    transform: rotate(-107deg);
+
+   /*  transform: rotate(24deg);
+    transform-origin: 50% 51%;
+    width: 88px;
+    height: 118px;
     z-index: 9;
+    top:-20px;
+    left:5px; */
+    transform-origin: 100% 100%;
+    width: 54px;
+    height: 62px;
+    z-index: 9;
+    top: -20px;
+    left: 5px;
 
-
-
-
-
-
-//----------------
 }
 
 
@@ -64,7 +69,7 @@
     height:80px;
     border-radius:50%;
     z-index: 10;
-    transform: rotate(14deg);
+    /* transform: rotate(14deg); */
     transition:.2s all;
   
 
@@ -72,19 +77,18 @@
     /* HELMET */
     .helmet {
         position: relative;
-        left: 22px;
-        top: 11px;
-        width: 110px;
+        top: -16px;
+        left: -10px;
+        width: 100px;
         height: 60px;
         background-color: #404040;
         border-top-left-radius: 110px;
         border-top-right-radius: 110px;
-        /* border: 5px solid #4d4d4d; */
         border-bottom: 0;
         z-index: 9;
-        -ms-transform: rotate(-274deg); /* IE 9 */
-        -webkit-transform: rotate(-274deg); /* Safari */
-        transform: rotate(-274deg);
+      /*   -ms-transform: rotate(-274deg); 
+        -webkit-transform: rotate(-274deg); 
+        transform: rotate(-274deg); */
         box-shadow: -2px 3px 7px #000;
         border: 1px solid #1a1a1a;
 
@@ -129,12 +133,13 @@
 
                 
         .mask {
-            width: 20px;
-            height: 34px;
-            top: 54px;
-            left: 39px;
+            width: 34px;
+            height: 24px;
+            top: 30px;
+            left: 44px;
             border-radius: 20px;
-            border-bottom-left-radius: 66px;
+            border-bottom-left-radius: 130px;
+            border-bottom-right-radius: 66px;
             background-color: #e6e6e6;
         }
     }
@@ -147,45 +152,54 @@
 /* GUN HANDS */
 
 .hands-container {
+    width: 250px;
+    height: 47px;
     position: absolute;
-    top: -7px;
+    top: 60px;
     left: -30px;
     z-index: 11;
     transition:.4s all;
-    transform: rotate(14deg);
+    
+   /*  transform: rotate(14deg); */
+  
+   transform: rotate(0deg);
+   transform-origin: 50% 50%;
+
 
         
     .right-hand {
+        top: 14px;
+        left: 20px;
         z-index: 10;
-        width: 40px;
-        height: 83px;
+        width: 83px;
+        height: 43px;
         background-color: #666666;
         border-radius: 10px;
-        box-shadow: -1px -2px 7px #000;
+        box-shadow: -1px 2px 7px #000;
     }
     .left-hand {
-        transition:.2s all;
+        transition: .2s all;
         position: absolute;
-        width: 26px;
-        height: 36px;
+        width: 36px;
+        height: 26px;
         background-color: #666666;
         z-index: 10;
-        top: 120px;
-        left: 10px;
+        top: 18px;
+        left: 141px;
         border-radius: 5px;
         box-shadow: -1px -2px 7px #000;
     }
 
     .gun {
-        top: 18px;
+        top: 0px;
         left: 32px;
-        width: 20px;
-        height: 166px;
+        width: 166px;
+        height: 20px;
         background-color: #4d4d4d;
         z-index: 2;
-        box-shadow: -3px -4px 7px #000;
-        border-bottom-left-radius: 10px;
-        border-top-right-radius: 10px;
+        box-shadow: -2px 1px 7px #000;
+        border-top-left-radius: 10px;
+        border-bottom-right-radius: 10px;
         border: 1px solid #1a1a1a;
 
 
@@ -193,11 +207,12 @@
         .gun-pipe {
             display: block;
             background-color: #333;
-            width: 13px;
-            height: 52px;
-            left: 7px;
+            width: 52px;
+            height: 14px;
+            left: 164px;
             position: absolute;
-            top: 165px;
+            top: -1px;
+            border-radius: 3px;
             border-right: 2px solid transparent;
         }
 
@@ -214,42 +229,51 @@
 
         }
 
-}
-
-        .gun-magazine {
+                .gun-magazine {
             position: absolute;
             display: block;
-            width: 58px;
-            height: 31px;
+            width: 31px;
+            height: 52px;
             background-color: #333;
             z-index: 0;
-            top: 69px;
-            right: 19px;
+            top: 19px;
+            right: 57px;
             padding-left: 7px;
             border-bottom-left-radius: 5px;
-            border-top-left-radius: 6px;
+            border-bottom-right-radius: 5px;
 
-                .gun-magazine span {
-                display: inline-block;
-                width: 2px;
-                height: 20px;
-                background-color: #666666;
-                margin: 4px 2px;
-                
+                span{
+                    display: block;
+                    width: 20px;
+                    height: 2px;
+                    background-color: #666666;
+                    margin: 7px 0;
+                    z-index: 1;
                 }
+
+              
+                
+                
             }
             .gun-magazine:before {
                 content: "";
                 display: block;
                 background-color: #000;
-                width: 5px;
-                height: 24px;
-                left: 68px;
+                width: 24px;
+                height: 5px;
+                left: -32px;
                 position: absolute;
-                top: 14px;
+                top: -15px;
                 border-radius: 3px;
-                border-left: 1px solid #b3b3b3;
+                border-bottom: 1px solid #b3b3b3;
             }
+
+}
+
+
+
+
+            
 
 
 }

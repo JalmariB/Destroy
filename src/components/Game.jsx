@@ -1,11 +1,14 @@
 import React from 'react';
 import { Component } from 'react';
 import Soldier from './Soldier.jsx';
-import Robot from './Robot.jsx'
+import Robot from './Robot.jsx';
+import Ground from './Ground.jsx';
+import Background from './Background.jsx';
 
 require('../sass/main.scss');
 require('../sass/hit.scss');
 require('../sass/hit-animation.scss')
+require('../sass/background.scss')
 
 export default class Game extends Component {
 
@@ -42,21 +45,29 @@ export default class Game extends Component {
     }
 
       aim() {
-          console.log('aim')
-        var degrees = 2;
+          var self = this;
+          $(document).on("mousemove", function (event) {
+              
+              var mouseXPosition = event.pageX;
+              var mouseYPosition = event.pageY;
+              //HUOM! KUN TÄHDÄDÄÄN ROBOTTIA NIIN TULEE ERROR, LUULTAVASTI JOHTUU VAAN Z-INDEXISTÄ
+              var angle = self.countAngle(mouseXPosition, mouseYPosition);
+            if(angle < 40 && angle > -40) {
 
-        $('.hands-container, .head-container').css({
-            left: -15,
-            '-webkit-transform': 'rotate(' + degrees + 'deg)',
-            '-moz-transform': 'rotate(' + degrees + 'deg)',
-            '-ms-transform': 'rotate(' + degrees + 'deg)',
-            '-o-transform': 'rotate(' + degrees + 'deg)',
-            'transform': 'rotate(' + degrees + 'deg)',
-        })
+                $('.shooting-elements-container').css({
+                    '-webkit-transform': 'rotate(' + angle + 'deg)',
+                    '-moz-transform': 'rotate(' + angle + 'deg)',
+                    '-ms-transform': 'rotate(' + angle + 'deg)',
+                    '-o-transform': 'rotate(' + angle + 'deg)',
+                    'transform': 'rotate(' + angle + 'deg)',
+                })
+            }       
+          }); 
     }
 
     defaultAim() {
-        var defaultDegrees = 14;
+        var defaultDegrees = 0;
+    
         $('.hands-container, .head-container').css({
             left: -30,
             '-webkit-transform': 'rotate(' + defaultDegrees + 'deg)',
@@ -67,12 +78,24 @@ export default class Game extends Component {
         })
     }
 
+    countAngle(mouseXPosition, mouseYPosition){
+        var offset = $('.shooting-elements-container').offset();
+        /* console.log('offset left', offset.left) */
+        var neighboringSide = mouseXPosition - 119 ;
+        var oppositeSide = mouseYPosition - 554;
+        var angle = oppositeSide / neighboringSide * 100;
+        console.log('Angle', angle)
+        return angle;
+        
+    }
 
     hit(){
-      
+       var self = this; 
         $(document).on("mousemove", function (event) {
             var mouseXPosition = event.pageX;
             var mouseYPosition = event.pageY;
+            self.countAngle(mouseXPosition, mouseYPosition);
+            
             $('.hit-container').css({
                  zIndex:99,
                 top: mouseYPosition,
@@ -88,7 +111,6 @@ export default class Game extends Component {
     }
  
     removeHitAnimation(){
-        console.log('stop')
         $('.fragment-one').removeClass('fragment-one-animation');
         $('.fragment-two').removeClass('fragment-two-animation');
         $('.fragment-tre').removeClass('fragment-tre-animation')
@@ -98,15 +120,13 @@ export default class Game extends Component {
 
 
     shoot() {
-        console.log('shoot')
-        $('.hands-container').addClass('hands-animation-shooting')
+       /*  $('.hands-container').addClass('hands-animation-shooting') */
         $('#shooter-container').addClass('shooting-lights')
         this.hit()
 
 
     }
     stopShooting() {
-        console.log('stop shoot')
         $('.hands-container').removeClass('hands-animation-shooting')
         $('#shooter-container').removeClass('shooting-lights')
         this.removeHitAnimation()
@@ -118,13 +138,15 @@ export default class Game extends Component {
         document.addEventListener("keyup", this.stopWalk.bind(this));
         document.addEventListener("mousedown", this.shoot.bind(this));
         document.addEventListener("mouseup", this.stopShooting.bind(this));
+        document.addEventListener("mousemove", this.aim.bind(this));
+        
     }
 
     renderRobotComponents(numberOfRobots) {
         var robotArray = [];
 
         for (var i = 0; i < numberOfRobots; i++) {
-            robotArray.push(<Robot aim={this.aim} defaultAim={this.defaultAim} />)
+            robotArray.push(<Robot aim={this.aim} />)
         }
         return [...robotArray];
     }
@@ -132,6 +154,7 @@ export default class Game extends Component {
     render() {
         return (
             <section className="game-container">
+            <Background />
                 <div className="hit-container">
                     <span className="fragment-one"></span>
                     <span className="fragment-two"></span>
@@ -139,7 +162,8 @@ export default class Game extends Component {
                     <span className="fragment-four"></span>
                 </div>
                 <Soldier />
-                {this.renderRobotComponents(this.props.howManyRobots)}
+                {this.renderRobotComponents(this.props.howManyRobots)} 
+                <Ground />
             </section>
         );
     }
