@@ -2,7 +2,7 @@ import React from 'react';
 import { Component } from 'react';
 import Soldier from './Soldier.jsx';
 import Robot from './Robot.jsx';
-import Ground from './Ground.jsx';
+
 import Background from './Background.jsx';
 
 require('../sass/main.scss');
@@ -17,10 +17,29 @@ export default class Game extends Component {
         return <Robot />;
 
     } */
+    
+  /*   moveBackground() {
+        
+        var step = 2;
+        $('.game-background').addClass('move-background');
+    } */
+
+    count() {
+        var newStateRight =  this.props.mainState.right + 5
+        this.props.handleMovementState(newStateRight)
+    }  
+    generateNewBackground() {
+      
+        if(this.props.mainState.right === 5){
+            console.log('5 on')
+
+
+        }
+    }
 
     walk(key) {
+        
         if (key.key == 'ArrowRight') {
-            console.log('ArrowRight')
             $('.right-leg-thigh').addClass('right-leg-thigh-animation')
             $('.right-leg-calf').addClass('right-leg-calf-animation')
             $('.right-leg-foot').addClass('right-leg-foot-animation')
@@ -28,9 +47,17 @@ export default class Game extends Component {
             $('.left-leg-thigh').addClass('left-leg-thigh-animation')
             $('.left-leg-calf').addClass('left-leg-calf-animation')
             $('.left-leg-foot').addClass('left-leg-foot-animation')
+
+            
+            this.count()
+            this.generateNewBackground()
+
         }
-    }
+    } 
+        
+    
     stopWalk(key) {
+
         if (key.key == 'ArrowRight') {
             $('.right-leg-thigh').removeClass('right-leg-thigh-animation')
             $('.right-leg-calf').removeClass('right-leg-calf-animation')
@@ -41,6 +68,11 @@ export default class Game extends Component {
             $('.left-leg-thigh').removeClass('left-leg-thigh-animation')
             $('.left-leg-calf').removeClass('left-leg-calf-animation')
             $('.left-leg-foot').removeClass('left-leg-foot-animation')
+
+           
+
+
+            
         }
     }
 
@@ -79,12 +111,11 @@ export default class Game extends Component {
     }
 
     countAngle(mouseXPosition, mouseYPosition){
+        console.log('mousex', mouseXPosition)
         var offset = $('.shooting-elements-container').offset();
-        /* console.log('offset left', offset.left) */
         var neighboringSide = mouseXPosition - 119 ;
         var oppositeSide = mouseYPosition - 554;
         var angle = oppositeSide / neighboringSide * 100;
-        console.log('Angle', angle)
         return angle;
         
     }
@@ -102,25 +133,24 @@ export default class Game extends Component {
                 left: mouseXPosition
             }) 
         });
-    
-        $('.fragment-one').addClass('fragment-one-animation');
-        $('.fragment-two').addClass('fragment-two-animation');
-        $('.fragment-tre').addClass('fragment-tre-animation');
-        $('.fragment-four').addClass('fragment-four-animation');
+        $('.hit-1').addClass('hit-animation-1')
+        $('.hit-2').addClass('hit-animation-2')
+        $('.hit-3').addClass('hit-animation-3')
+        $('.hit-4').addClass('hit-animation-4')
+        $('.blast').addClass('blast-animation')
         
     }
  
     removeHitAnimation(){
-        $('.fragment-one').removeClass('fragment-one-animation');
-        $('.fragment-two').removeClass('fragment-two-animation');
-        $('.fragment-tre').removeClass('fragment-tre-animation')
-        $('.fragment-four').removeClass('fragment-four-animation')
-        
+        $('.hit-1').removeClass('hit-animation-1')
+        $('.hit-2').removeClass('hit-animation-2')
+        $('.hit-3').removeClass('hit-animation-3')
+        $('.hit-4').removeClass('hit-animation-4')
+        $('.blast').removeClass('blast-animation')
     }
 
 
     shoot() {
-       /*  $('.hands-container').addClass('hands-animation-shooting') */
         $('#shooter-container').addClass('shooting-lights')
         this.hit()
 
@@ -152,18 +182,29 @@ export default class Game extends Component {
     }
     
     render() {
+
+        const divStyle = {
+            right: this.props.mainState.right,
+        };
+
         return (
             <section className="game-container">
-            <Background />
+            <section style={divStyle} className="background-container">
+                <Background mainState={this.props.mainState} />
+                <Background mainState={this.props.mainState} />
+                <Background mainState={this.props.mainState} />
+                
+            </section> 
                 <div className="hit-container">
-                    <span className="fragment-one"></span>
-                    <span className="fragment-two"></span>
-                    <span className="fragment-tre"></span>
-                    <span className="fragment-four"></span>
+                    <div className="hit-1"></div>
+                    <div className="hit-2"></div>
+                    <div className="blast"></div>
+                    <div className="hit-3"></div>
+                    <div className="hit-4"></div>
                 </div>
                 <Soldier />
-                {this.renderRobotComponents(this.props.howManyRobots)} 
-                <Ground />
+                {this.renderRobotComponents(this.props.mainState.howManyRobots)} 
+                
             </section>
         );
     }

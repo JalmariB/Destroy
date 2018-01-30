@@ -48,7 +48,7 @@
 /* right leg animation */
 .right-leg-thigh-animation {
       -webkit-animation-name: right-leg-thigh-moving ; /* Safari 4.0 - 8.0 */
-    -webkit-animation-duration: 0.7,s; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 0.7s; /* Safari 4.0 - 8.0 */
     animation-name: right-leg-thigh-moving ;
     animation-duration: 0.7s;
     animation-iteration-count: infinite;
@@ -56,7 +56,7 @@
 }
 .right-leg-calf-animation {
       -webkit-animation-name: right-leg-calf-moving ; /* Safari 4.0 - 8.0 */
-    -webkit-animation-duration: 0.7,s; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 0.7s; /* Safari 4.0 - 8.0 */
     animation-name: right-leg-calf-moving ;
     animation-duration: 0.7s;
     animation-iteration-count: infinite;
@@ -75,7 +75,7 @@
 
 .left-leg-thigh-animation {
       -webkit-animation-name: left-leg-thigh-moving ; 
-    -webkit-animation-duration: 0.7,s; 
+    -webkit-animation-duration: 0.7s; 
     animation-name: left-leg-thigh-moving ;
     animation-duration: 0.7s;
     animation-iteration-count: infinite;
@@ -83,15 +83,21 @@
 }
 .left-leg-calf-animation {
       -webkit-animation-name: left-leg-calf-moving ; 
-    -webkit-animation-duration: 0.7,s; 
+    -webkit-animation-duration: 0.7s; 
     animation-name: left-leg-calf-moving ;
     animation-duration: 0.7s;
     animation-iteration-count: infinite;
 
 }
 
-
-
+/* .move-background {
+       -webkit-animation-name: move-background ; 
+    -webkit-animation-duration: 20s; 
+    animation-name: move-background ;
+    animation-duration: 20s;
+    animation-iteration-count: infinite;
+}
+ */
 
 
 
@@ -133,3 +139,8 @@
     50% {top: 75px; left:-8px; transform: rotate(5deg);}
     100% {top: 75px;}
 }
+
+/* @keyframes move-background {
+    0% {right:0}
+    100% {right: 100px;}
+} */
