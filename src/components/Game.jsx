@@ -64,7 +64,6 @@ export default class Game extends Component {
             $('.right-leg-foot').removeClass('right-leg-foot-animation')
 
             /* left leg */
-
             $('.left-leg-thigh').removeClass('left-leg-thigh-animation')
             $('.left-leg-calf').removeClass('left-leg-calf-animation')
             $('.left-leg-foot').removeClass('left-leg-foot-animation')
