@@ -1,12 +1,24 @@
 import React from 'react';
 import { Component } from 'react';
 import Game from './Game.jsx'
-
+import Work from './Work.jsx'
 require('../sass/main.scss');
 require('../sass/game-start.scss')
 
+
+
+
 export default class GameStart extends Component {
-   
+    /* work */
+    gameStartHeight() {
+        console.log($('.game-start').length)
+        let gameStartElementHeight = $('.game-start').height()
+        console.log('height', gameStartElementHeight)
+        
+    }
+    componentDidMount(){
+        
+    }
   
 
     howManyRobotsWillBeRendered(numberOfRobots){
@@ -17,7 +29,9 @@ export default class GameStart extends Component {
 
 
         return (
+            <section>
             <section className="game-start">
+            
                 <section className="presentation-container">
                     <h1>DESTROY</h1>
                     <span></span>
@@ -28,6 +42,8 @@ export default class GameStart extends Component {
                     <button onClick={() => this.howManyRobotsWillBeRendered(5)} className="primary-button">NORMAL</button>
                     <button onClick={() => this.howManyRobotsWillBeRendered(10)} className="primary-button">FUCKED UP</button>
                 </section>
+            </section>
+            <Work />
             </section>
             
         );
