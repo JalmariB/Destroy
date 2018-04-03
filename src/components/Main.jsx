@@ -13,34 +13,24 @@ export default class Main extends Component {
       showGameStartComponent: true,
       showGameComponent: false,
       howManyRobots: 5,
-      right:0
-      
+      left:0
     }
-    
-    
-
   }
 
 
   handleClickFromGameStart(numbersOfRobots) {
-   console.log('number of robots', numbersOfRobots)
    
    this.setState({
      showGameStartComponent: false,
      showGameComponent: true,
-     howManyRobots: numbersOfRobots
-     
-     
+     howManyRobots: numbersOfRobots    
    });
   }
   handleMovementState(r) {
 
     this.setState({
-      right: r
-
-
+      left: r
     });
-    console.log('r', r)
   }
 
   render() {

@@ -1,11 +1,13 @@
 .ground {
-    position: absolute;
+    position: fixed;
+    left:0;
+    right:0;
     bottom:0;
     height: 50px;
-    width: 100%;
     background-color:#010e1d;
     border-top:20px solid #021f3f;
     z-index: 10;
+
 
     
 

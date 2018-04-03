@@ -1,0 +1,211 @@
+
+/* ANIMATIONS  */
+
+/* .hands-animation-shooting:before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 244px;
+    left: 26px;
+    border-top: 4px solid transparent;
+    border-bottom: 13px solid transparent;
+    border-left: 35px solid orange;
+    transform: rotate(83deg);
+
+}
+.hands-animation-shooting:after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 221px;
+    left: 30px;
+    border-top: 12px solid transparent;
+    border-bottom: 16px solid transparent;
+    border-left: 32px solid orange;
+    transform: rotate(-83deg);
+
+} */
+
+.gun-fire-animation {
+    animation: gun-fire .1s infinite;
+}
+
+
+.shooting-lights {
+    -webkit-animation-name: shooting-lights ; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 0.1s; /* Safari 4.0 - 8.0 */
+    animation-name: shooting-lights ;
+    animation-duration: 0.1s;
+    animation-iteration-count: infinite;
+}
+
+.hands-animation-shooting {
+    -webkit-animation-name: hand-shooting ; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 0.1s; /* Safari 4.0 - 8.0 */
+    animation-name: hand-shooting ;
+    animation-duration: 0.1s;
+    animation-iteration-count: infinite;
+
+}
+
+.chell-container {
+    position: absolute;
+    bottom:8px;
+    right:101px;
+    height: 100px;
+    width: 100px;
+    z-index: 99;
+
+    .chell {
+        position: absolute;
+        bottom:0;
+        right:0;
+        background-color: #000;
+        width: 21px;
+        height: 5px;
+    }
+    .chell:after {
+        content:"";
+        display: block;
+        height: 5px;
+        width: 5px;
+        position: absolute;
+        left:18px;
+        background-color: orange;
+        border-radius: 50%;
+
+    }
+}
+
+
+/* right leg animation */
+.right-leg-thigh-animation {
+      -webkit-animation-name: right-leg-thigh-moving ; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 0.7,s; /* Safari 4.0 - 8.0 */
+    animation-name: right-leg-thigh-moving ;
+    animation-duration: 0.7s;
+    animation-iteration-count: infinite;
+
+}
+.right-leg-calf-animation {
+      -webkit-animation-name: right-leg-calf-moving ; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 0.7,s; /* Safari 4.0 - 8.0 */
+    animation-name: right-leg-calf-moving ;
+    animation-duration: 0.7s;
+    animation-iteration-count: infinite;
+
+}
+
+.right-leg-foot-animation {
+    left:-3px;
+    transform: rotate(-2deg) !important;
+}
+.left-leg-foot-animation {
+    /* transform: rotate(4deg) !important; */
+}
+
+/* left leg animation */
+
+.left-leg-thigh-animation {
+      -webkit-animation-name: left-leg-thigh-moving ; 
+    -webkit-animation-duration: 0.7,s; 
+    animation-name: left-leg-thigh-moving ;
+    animation-duration: 0.7s;
+    animation-iteration-count: infinite;
+
+}
+.left-leg-calf-animation {
+      -webkit-animation-name: left-leg-calf-moving ; 
+    -webkit-animation-duration: 0.7,s; 
+    animation-name: left-leg-calf-moving ;
+    animation-duration: 0.7s;
+    animation-iteration-count: infinite;
+
+}
+
+//chell animation
+
+.chell-animation {
+     -webkit-animation-name: chellfly ; 
+    -webkit-animation-duration:.2,s; 
+    animation-name: chellfly ;
+    animation-duration: .2s;
+    animation-iteration-count: infinite;
+
+}
+
+
+   @keyframes gun-fire {
+                0%{
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 1;
+                }
+            }
+
+@keyframes hand-shooting {
+    0% {left: -30px;}
+    50% {left: -20px;}
+    100% {left: -30px;}
+}
+@keyframes shooting-lights {
+    0% {opacity: 1;}
+    50% {opacity: 0.8;}
+    100% {opacity: 1;}
+}
+
+@keyframes right-leg-thigh-moving {
+    0% {top: 9px;}
+    50% {top: 8px; left:6px; transform: rotate(-8deg);}
+    100% {top: 9px;}
+}
+@keyframes right-leg-calf-moving {
+    0% {top: 75px;}
+    50% {top: 75px; left:18px; transform: rotate(2deg);}
+    100% {top: 75px;}
+}
+ @keyframes right-leg-foot {
+    0% { }
+    10% {top: 80px; left: -2px; transform: rotate(-2deg); } 
+    100% {top: 80px; left: -2px; transform: rotate(-2deg); }
+} 
+
+
+@keyframes left-leg-thigh-moving {
+    0% {left:0;}
+    50% {left:-9px; transform: rotate(4deg);}
+    100% {left:0;}
+}
+@keyframes left-leg-calf-moving {
+    0% {top: 75px;}
+    50% {top: 75px; left:-8px; transform: rotate(5deg);}
+    100% {top: 75px;}
+}
+
+
+
+@keyframes chellfly {
+    0%{
+        bottom:0;
+        right:0;
+        opacity: 1;
+         transform:rotate(0deg);
+    }
+    50%{
+        opacity: 1;
+       
+        right:50px;
+        bottom:40px;
+    }
+    100% {
+        bottom:0px;
+         transform:rotate(-45deg);
+        right:80px;
+        opacity: 0;
+    }
+}

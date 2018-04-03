@@ -7,27 +7,50 @@ require('../sass/robot-animations.scss');
 
 
 export default class Robot extends React.Component {
-    headShot(e) {
-       var $current = $(e.currentTarget);
-        $current.addClass('headshot');
-        $('.robot-container').addClass('robot-down')
-        $('.wind-container').hide();
-        $('.calf').addClass('calf-rotate');
-        $('.robot-container').css({
-            animationIterationCount: 1,
+    constructor(props) {
+        super(props)
+        this.state = ({
+            id: this.props.robotInitValues.id,
+            color: this.props.robotInitValues.color,
+            speed:this.props.robotInitValues.speed,
+            startPosition: this.props.robotInitValues.startPosition
         })
-        /* $('.robot-container').addClass('robot-face-down'); */
+        this.occipitalColor = '#ce3a3a';
 
     }
-   
+
+
+
+    headShot(e) {
+        var $current = $(e.currentTarget);
+        if(!$current.hasClass('headshot')) {
+            $current.addClass('headshot');
+            $current.parent('.robot-container').addClass('robot-down').css({
+                animationIterationCount: 1,
+                left: $current.offset().left
+            })
+            $current.parent('.robot-container').find('.wind-container').hide();
+            $current.parent('.robot-container').find('.calf').addClass('calf-rotate');
+        }
+        
+
+    }
 
 
 
     render() {
+        let robotSpeedStyle = {
+            transition: this.state.speed + 's all',
+            left: this.state.startPosition
+        }
+        let color = {
+            backgroundColor: this.state.color
+        }
+
 
         return (
 
-            <section className="robot-container" onMouseEnter={this.props.aim} onMouseLeave={this.props.defaultAim} onMouseDown={this.props.shoot} onMouseUp={this.props.stopShooting}>
+            <section style={robotSpeedStyle} className="robot-container" onMouseEnter={this.props.aim} onMouseLeave={this.props.defaultAim} onMouseDown={this.props.shoot} onMouseUp={this.props.stopShooting}>
                 <div className="rb-head-container" onClick={this.headShot} >
                     <div className="rb-head">
                         <div className="rb-eye">
@@ -39,8 +62,8 @@ export default class Robot extends React.Component {
                     <div className="rb-head-chin"></div>
                 </div>
                 <div className="rb-neck"></div>
-                <div className="rb-right-shoulder"> </div>
-                <section className="right-arm-container"> 
+                <div style={color} className="rb-right-shoulder"> </div>
+                <section className="right-arm-container">
                     <div className="arm"></div>
                     <div className="arm-joint"></div>
                     <div className="arm-bottom"></div>
@@ -51,31 +74,26 @@ export default class Robot extends React.Component {
                             <span></span>
                             <span></span>
                         </div>
-                        
-                    </div>   
+
+                    </div>
                 </section>
-                
                 <div className="rb-torso"></div>
                 <div className="rb-stomach"></div>
-                <div className="rb-pelvis"></div>
+                <div style={color} className="rb-pelvis"></div>
                 <div className="rb-right-leg">
                     <div className="pelvis-joint"></div>
                     <div className="thight"></div>
                     <div className="thight-joint"></div>
                     <section className="calf-container"></section>
-                        <div className="calf">
+                    <div className="calf">
                         <div className="wind-container">
                             <div className="wind"></div>
                             <div className="wind"></div>
                             <div className="wind"></div>
                         </div>
-                        
-                        </div>
-                       
 
+                    </div>
                 </div>
-                
-  
             </section>
         );
     }

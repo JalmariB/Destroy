@@ -10,36 +10,45 @@ require('../sass/hit.scss');
 require('../sass/hit-animation.scss')
 require('../sass/background.scss')
 
+
 export default class Game extends Component {
 
-/*     renderRobotComponent() {
-        $(".game-container").append('' + <Robot /> + '');
-        return <Robot />;
 
-    } */
-    
-  /*   moveBackground() {
-        
-        var step = 2;
-        $('.game-background').addClass('move-background');
-    } */
+    constructor(props) {
+        super(props);
+        this.state = ({
+            robotRender: true,
+        });
+        this.fired = false;
 
-    count() {
-        var newStateRight =  this.props.mainState.right + 5
-        this.props.handleMovementState(newStateRight)
-    }  
-    generateNewBackground() {
       
-        if(this.props.mainState.right === 5){
-            console.log('5 on')
 
-
-        }
     }
 
-    walk(key) {
+//vaihda function nimi
+    count() {
+        var newStateLeft =  this.props.mainState.left - 10000
+        this.props.handleMovementState(newStateLeft)
+
+    }  
+    gameStartCount() {
+        setTimeout(function () { 
+            $('.robot-container').css({ left: 0 })
+        }, 3000);
         
-        if (key.key == 'ArrowRight') {
+    }
+    
+  
+
+    
+    walk(key) {
+       
+        if (key.key == 'd') {
+            if (!this.fired) {
+                this.fired = true;
+                this.count();
+            }
+            
             $('.right-leg-thigh').addClass('right-leg-thigh-animation')
             $('.right-leg-calf').addClass('right-leg-calf-animation')
             $('.right-leg-foot').addClass('right-leg-foot-animation')
@@ -48,17 +57,19 @@ export default class Game extends Component {
             $('.left-leg-calf').addClass('left-leg-calf-animation')
             $('.left-leg-foot').addClass('left-leg-foot-animation')
 
-            
-            this.count()
-            this.generateNewBackground()
+           // $('.game-container').addClass('game-background-animation')    
+            /* this.generateNewBackground() */
 
         }
     } 
         
     
     stopWalk(key) {
-
-        if (key.key == 'ArrowRight') {
+        this.fired = false;
+        let stopWalkPosition = $('.game-container').offset().left;
+        this.props.handleMovementState(stopWalkPosition)
+        if (key.key == 'd') {
+            
             $('.right-leg-thigh').removeClass('right-leg-thigh-animation')
             $('.right-leg-calf').removeClass('right-leg-calf-animation')
             $('.right-leg-foot').removeClass('right-leg-foot-animation')
@@ -66,12 +77,7 @@ export default class Game extends Component {
             /* left leg */
             $('.left-leg-thigh').removeClass('left-leg-thigh-animation')
             $('.left-leg-calf').removeClass('left-leg-calf-animation')
-            $('.left-leg-foot').removeClass('left-leg-foot-animation')
-
-           
-
-
-            
+            $('.left-leg-foot').removeClass('left-leg-foot-animation')        
         }
     }
 
@@ -110,7 +116,6 @@ export default class Game extends Component {
     }
 
     countAngle(mouseXPosition, mouseYPosition){
-        console.log('mousex', mouseXPosition)
         var offset = $('.shooting-elements-container').offset();
         var neighboringSide = mouseXPosition - 119 ;
         var oppositeSide = mouseYPosition - 554;
@@ -136,11 +141,11 @@ export default class Game extends Component {
         $('.hit-2').addClass('hit-animation-2')
         $('.hit-3').addClass('hit-animation-3')
         $('.hit-4').addClass('hit-animation-4')
-        $('.blast').addClass('blast-animation')
-        
+        $('.blast').addClass('blast-animation')   
     }
  
     removeHitAnimation(){
+
         $('.hit-1').removeClass('hit-animation-1')
         $('.hit-2').removeClass('hit-animation-2')
         $('.hit-3').removeClass('hit-animation-3')
@@ -150,45 +155,111 @@ export default class Game extends Component {
 
 
     shoot() {
-        $('#shooter-container').addClass('shooting-lights')
-        this.hit()
+        var audioElement = document.getElementById('audio');
+        audioElement.pause();
+        audioElement.currentTime = 0;
+        audioElement.play();
+        $('.gun-fire-container').addClass('gun-fire-animation');
+        $('.chell').addClass('chell-animation')
+        $('.hands-container').addClass('hands-animation-shooting')
 
-
+        
     }
     stopShooting() {
-        $('.hands-container').removeClass('hands-animation-shooting')
-        $('#shooter-container').removeClass('shooting-lights')
-        this.removeHitAnimation()
+       $('.hands-container').removeClass('hands-animation-shooting') 
+        $('.gun-fire-container').removeClass('gun-fire-animation');
+        $('.chell').removeClass('chell-animation');
     }
-
-
+   
     componentDidMount() {
         document.addEventListener("keydown", this.walk.bind(this));
         document.addEventListener("keyup", this.stopWalk.bind(this));
         document.addEventListener("mousedown", this.shoot.bind(this));
         document.addEventListener("mouseup", this.stopShooting.bind(this));
         document.addEventListener("mousemove", this.aim.bind(this));
-        
+        this.gameStartCount()
     }
+  
+    robotIdGenerator(){
+        let d = new Date();
+        let id = d.getTime();
+        return id;
+    }
+    keyGenerator() {
+        let d = new Date();
+        let key = d.getTime();
+        return key;
+    }
+    robotColorGenerator(){
+        let colors = ['#4d4d4d', '#cc33ff', '#3366ff', '#00ffcc'];
+        let randomNumber = Math.floor((Math.random() * colors.length) + 1);
+        let color = colors[randomNumber]
+        return color;
+    }
+    robotStartPositionGenerator() {
+        let randomNumber = Math.floor((Math.random() * 4000) + 1000);
+        return randomNumber;
+    }
+    robotSpeedGenerator(){
+        let randomNumber = Math.floor((Math.random() * 50) + 1);
+
+        return randomNumber;
+    }
+    /* speedGenerator(){
+        let randomNumber = Math.floor((Math.random() * 10) + 1);
+        return randomNumber;
+    } */
 
     renderRobotComponents(numberOfRobots) {
-        var robotArray = [];
+        let robotArray = [];
 
         for (var i = 0; i < numberOfRobots; i++) {
-            robotArray.push(<Robot aim={this.aim} />)
+            /* let key = this.keyGenerator() + i; */
+            let robotInitValues = {
+                id: this.robotIdGenerator(),
+                color: this.robotColorGenerator(),
+                startPosition: this.robotStartPositionGenerator(),
+                speed: this.robotSpeedGenerator(),
+
+            }
+
+            robotArray.push(<Robot  aim={this.aim} robotInitValues={robotInitValues} />)
         }
         return [...robotArray];
     }
+
+    collisionCheck(){
+        console.log('launch')
+
+        for(var i = 0; i > 300; i++) {
+
+            setTimeout(function () {
+
+                console.log('time out')
+                if ($('.robot-conainer').offset().left === $('#shooter-container').offset().left) {
+
+                    console.log('check true')
+                }
+            }, 20);
+
+        }
+        
+        
+    }
     
     render() {
-
+        this.collisionCheck()
         const divStyle = {
-            right: this.props.mainState.right,
+            left: this.props.mainState.left,
         };
 
         return (
-            <section className="game-container">
-            <section style={divStyle} className="background-container">
+            <section style={divStyle} className="game-container">
+              
+                <audio id="audio" ref="audio_tag" src="src/audio/shot.mp3" />
+             
+            
+            <section className="background-container">
                 <Background mainState={this.props.mainState} />
                 <Background mainState={this.props.mainState} />
                 <Background mainState={this.props.mainState} />
@@ -202,8 +273,7 @@ export default class Game extends Component {
                     <div className="hit-4"></div>
                 </div>
                 <Soldier />
-                {this.renderRobotComponents(this.props.mainState.howManyRobots)} 
-                
+                {(this.state.robotRender ? this.renderRobotComponents(this.props.mainState.howManyRobots) : null)} 
             </section>
         );
     }

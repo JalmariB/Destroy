@@ -51,6 +51,18 @@
     animation-delay:.5s;
     animation-fill-mode: forwards;
 }
+.headshot {
+
+.rb-head-occipital {
+    animation: 1.1s occipitalFly forwards; 
+
+}
+.eye-light {
+    background-color: #4d4d4d !important;
+    animation:none;
+    box-shadow: none !important;
+}
+}
 /* .robot-face-down {
       -webkit-animation-name:robot-face-down; 
     -webkit-animation-duration: 1s; 
@@ -59,6 +71,24 @@
     animation-delay:2s;
     animation-fill-mode: forwards;
 } */
+@keyframes occipitalFly {
+    0%{
+        transform: rotate(0deg);
+    }
+    50% {
+        top: -200px;
+    }
+    95% {
+        opacity: 1;
+    }
+    100% {
+        transform: rotate(360deg);
+        opacity:0;
+        left: 500px;
+        top: -100px;
+    }
+
+}
 
 @keyframes robot-down {
     0%{
@@ -69,7 +99,7 @@
     }
     100% {
         transform: rotate(-76deg);
-        bottom:-120px;
+        bottom:-150px;
     }
 }
 /* @keyframes robot-face-down {

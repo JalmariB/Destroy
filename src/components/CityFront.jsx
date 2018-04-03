@@ -11,7 +11,7 @@ export default class CityFront extends Component {
 
             var windowColor = Math.floor((Math.random() * 4) + 1)
 
-            console.log('number', windowColor)
+            /* console.log('number', windowColor) */
             
             if (windowColor === 1) {
                 $('.window-row-container-1').append('<span class="window-dark"></span>'); 
