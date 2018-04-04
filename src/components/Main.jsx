@@ -26,6 +26,13 @@ export default class Main extends Component {
      howManyRobots: numbersOfRobots    
    });
   }
+  handleRestartGame(){
+    
+    this.setState({
+      showGameStartComponent: true,
+      showGameComponent: false,
+    })
+  }
   handleMovementState(r) {
 
     this.setState({
@@ -39,7 +46,7 @@ export default class Main extends Component {
     return (
      <section className="main-container">
         {this.state.showGameStartComponent ? <GameStart handleClickFromGameStart={this.handleClickFromGameStart.bind(this)}/> : null}
-        {this.state.showGameComponent ? <Game mainState={this.state} handleMovementState={this.handleMovementState.bind(this)} /> : null}
+        {this.state.showGameComponent ? <Game handleRestartGame={this.handleRestartGame.bind(this)} mainState={this.state} handleMovementState={this.handleMovementState.bind(this)} /> : null}
      </section>
       );
   }

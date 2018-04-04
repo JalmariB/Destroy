@@ -2,6 +2,7 @@ import React from 'react';
 import { Component } from 'react';
 import Soldier from './Soldier.jsx';
 import Robot from './Robot.jsx';
+import GameOverInfo from './GameOverInfo.jsx'
 
 import Background from './Background.jsx';
 
@@ -18,11 +19,9 @@ export default class Game extends Component {
         super(props);
         this.state = ({
             robotRender: true,
+            gameOver:false
         });
         this.fired = false;
-
-      
-
     }
 
 //vaihda function nimi
@@ -161,9 +160,8 @@ export default class Game extends Component {
         audioElement.play();
         $('.gun-fire-container').addClass('gun-fire-animation');
         $('.chell').addClass('chell-animation')
-        $('.hands-container').addClass('hands-animation-shooting')
-
-        
+        $('.hands-container').addClass('hands-animation-shooting');
+        this.showGameOverInfo()
     }
     stopShooting() {
        $('.hands-container').removeClass('hands-animation-shooting') 
@@ -229,22 +227,18 @@ export default class Game extends Component {
     }
 
     collisionCheck(){
-        console.log('launch')
+       
+    }
+    showGameOverInfo(){
 
-        for(var i = 0; i > 300; i++) {
+        this.setState({
+            gameOver:true
+        })
 
-            setTimeout(function () {
 
-                console.log('time out')
-                if ($('.robot-conainer').offset().left === $('#shooter-container').offset().left) {
-
-                    console.log('check true')
-                }
-            }, 20);
-
-        }
-        
-        
+    }
+    restartGame(){
+        this.props.handleRestartGame();
     }
     
     render() {
@@ -254,11 +248,9 @@ export default class Game extends Component {
         };
 
         return (
-            <section style={divStyle} className="game-container">
-              
-                <audio id="audio" ref="audio_tag" src="src/audio/shot.mp3" />
-             
-            
+            <section style={divStyle} className="game-container">    
+            <audio id="audio" ref="audio_tag" src="src/audio/shot.mp3" />
+                {this.state.gameOver ? <GameOverInfo restartGame={this.restartGame.bind(this)} /> : null}
             <section className="background-container">
                 <Background mainState={this.props.mainState} />
                 <Background mainState={this.props.mainState} />

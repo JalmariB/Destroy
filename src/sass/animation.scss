@@ -126,6 +126,18 @@
     100% {top: 75px;}
 }
 
+
+@keyframes show {
+    0%{
+        margin-top:20px;
+    }
+    100% {
+        margin-top:0;
+        opacity:1;
+    }
+
+}
+
 /* @keyframes move-background {
     0% {right:0}
     100% {right: 100px;}

@@ -16,10 +16,7 @@ export default class Robot extends React.Component {
             startPosition: this.props.robotInitValues.startPosition
         })
         this.occipitalColor = '#ce3a3a';
-
     }
-
-
 
     headShot(e) {
         var $current = $(e.currentTarget);
@@ -32,11 +29,7 @@ export default class Robot extends React.Component {
             $current.parent('.robot-container').find('.wind-container').hide();
             $current.parent('.robot-container').find('.calf').addClass('calf-rotate');
         }
-        
-
     }
-
-
 
     render() {
         let robotSpeedStyle = {
