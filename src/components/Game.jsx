@@ -29,16 +29,54 @@ export default class Game extends Component {
         var newStateLeft =  this.props.mainState.left - 10000
         this.props.handleMovementState(newStateLeft)
 
-    }  
-    gameStartCount() {
-        setTimeout(function () { 
-            $('.robot-container').css({ left: 0 })
-        }, 3000);
+    }
+    showGameOverInfo() {
+
+        this.setState({
+            gameOver: true
+        })
+    }
+
+    restartGame() {
+        this.props.handleRestartGame();
+    }
+    //deal with this
+    checkAreAllRobotsDead() {
+        if ($('.robot-container').length === 0) {
+        }
+    }
+    soldierDeath(){
+        let self = this;
+        $('#shooter-container').addClass('soldier-death')
+        setTimeout(function(){
+            self.showGameOverInfo();
+        },2000);
         
     }
-    
-  
+    checkCollision(){
+        let self = this;
+        $(".robot-container").each(function () {
 
+            if ($(this).offset().left < 130) {
+                self.soldierDeath();
+            }
+        });
+    }
+    gameLoop() {
+        let self = this;
+        setInterval(function () {
+            self.checkAreAllRobotsDead();
+            self.checkCollision();
+
+        }, 20);
+    }
+
+    gameStartCount() {
+       setTimeout(function () { 
+            $('.robot-container').css({ left: 60 })
+        }, 2000); 
+        
+    }
     
     walk(key) {
        
@@ -47,7 +85,6 @@ export default class Game extends Component {
                 this.fired = true;
                 this.count();
             }
-            
             $('.right-leg-thigh').addClass('right-leg-thigh-animation')
             $('.right-leg-calf').addClass('right-leg-calf-animation')
             $('.right-leg-foot').addClass('right-leg-foot-animation')
@@ -55,9 +92,6 @@ export default class Game extends Component {
             $('.left-leg-thigh').addClass('left-leg-thigh-animation')
             $('.left-leg-calf').addClass('left-leg-calf-animation')
             $('.left-leg-foot').addClass('left-leg-foot-animation')
-
-           // $('.game-container').addClass('game-background-animation')    
-            /* this.generateNewBackground() */
 
         }
     } 
@@ -125,9 +159,9 @@ export default class Game extends Component {
 
     hit(){
        var self = this; 
-        $(document).on("mousemove", function (event) {
-            var mouseXPosition = event.pageX;
-            var mouseYPosition = event.pageY;
+        $(document).on("mousemove", function (e) {
+            var mouseXPosition = e.pageX;
+            var mouseYPosition = e.pageY;
             self.countAngle(mouseXPosition, mouseYPosition);
             
             $('.hit-container').css({
@@ -140,16 +174,15 @@ export default class Game extends Component {
         $('.hit-2').addClass('hit-animation-2')
         $('.hit-3').addClass('hit-animation-3')
         $('.hit-4').addClass('hit-animation-4')
-        $('.blast').addClass('blast-animation')   
+       /*  $('.blast').addClass('blast-animation')    */
     }
  
     removeHitAnimation(){
-
         $('.hit-1').removeClass('hit-animation-1')
         $('.hit-2').removeClass('hit-animation-2')
         $('.hit-3').removeClass('hit-animation-3')
         $('.hit-4').removeClass('hit-animation-4')
-        $('.blast').removeClass('blast-animation')
+       /*  $('.blast').removeClass('blast-animation') */
     }
 
 
@@ -161,7 +194,7 @@ export default class Game extends Component {
         $('.gun-fire-container').addClass('gun-fire-animation');
         $('.chell').addClass('chell-animation')
         $('.hands-container').addClass('hands-animation-shooting');
-        this.showGameOverInfo()
+       /*  this.showGameOverInfo() */
     }
     stopShooting() {
        $('.hands-container').removeClass('hands-animation-shooting') 
@@ -175,7 +208,10 @@ export default class Game extends Component {
         document.addEventListener("mousedown", this.shoot.bind(this));
         document.addEventListener("mouseup", this.stopShooting.bind(this));
         document.addEventListener("mousemove", this.aim.bind(this));
-        this.gameStartCount()
+        console.log('mount')
+        
+        this.gameStartCount();
+        this.gameLoop();
     }
   
     robotIdGenerator(){
@@ -229,17 +265,8 @@ export default class Game extends Component {
     collisionCheck(){
        
     }
-    showGameOverInfo(){
-
-        this.setState({
-            gameOver:true
-        })
-
-
-    }
-    restartGame(){
-        this.props.handleRestartGame();
-    }
+   
+   
     
     render() {
         this.collisionCheck()

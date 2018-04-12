@@ -16,11 +16,12 @@ export default class Robot extends React.Component {
             startPosition: this.props.robotInitValues.startPosition
         })
         this.occipitalColor = '#ce3a3a';
+        
     }
 
     headShot(e) {
         var $current = $(e.currentTarget);
-        if(!$current.hasClass('headshot')) {
+        if (!$current.hasClass('headshot')) {
             $current.addClass('headshot');
             $current.parent('.robot-container').addClass('robot-down').css({
                 animationIterationCount: 1,
@@ -33,7 +34,7 @@ export default class Robot extends React.Component {
 
     render() {
         let robotSpeedStyle = {
-            transition: this.state.speed + 's all',
+            transition: this.state.speed + 's all linear',
             left: this.state.startPosition
         }
         let color = {
@@ -43,7 +44,7 @@ export default class Robot extends React.Component {
 
         return (
 
-            <section style={robotSpeedStyle} className="robot-container" onMouseEnter={this.props.aim} onMouseLeave={this.props.defaultAim} onMouseDown={this.props.shoot} onMouseUp={this.props.stopShooting}>
+            <section id={this.state.id} style={robotSpeedStyle} className="robot-container" onMouseEnter={this.props.aim} onMouseLeave={this.props.defaultAim} onMouseDown={this.props.shoot} onMouseUp={this.props.stopShooting}>
                 <div className="rb-head-container" onClick={this.headShot} >
                     <div className="rb-head">
                         <div className="rb-eye">

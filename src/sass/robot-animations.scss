@@ -5,7 +5,6 @@
     animation-name: eye-flash ;
     animation-duration:2s;
     animation-iteration-count: infinite;
-
 }
 .wind {
     -webkit-animation-name: wind ; 
@@ -22,13 +21,6 @@
     animation-iteration-count: infinite;
 }
 .headshot {
-   /*    -webkit-animation-name:headshot; 
-    -webkit-animation-duration: 0.2s ; 
-    animation-name:headshot ;
-    animation-duration:0.2s;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards; */
-   /*  transform-origin: center; */
    transform: rotate(20deg);
    transition: transform .05s linear;
   transform-origin: center center;
@@ -97,9 +89,16 @@
     50% {bottom:-80px;
         transform: rotate(-0deg);
     }
-    100% {
+    80% {
         transform: rotate(-76deg);
         bottom:-150px;
+        opacity: 1;
+
+    }
+    100%{
+        transform: rotate(-76deg);
+        bottom:-150px;
+        opacity: 0;
     }
 }
 /* @keyframes robot-face-down {
@@ -122,10 +121,10 @@
     }
 }
 
-@keyframes moving {
+/* @keyframes moving {
     0% {right: 200px;}
     100% {right: 20000px;}
-}
+} */
 @keyframes flying {
     0% { bottom: 10%;}
     50% {bottom: 20%;}

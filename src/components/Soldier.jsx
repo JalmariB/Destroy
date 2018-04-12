@@ -7,8 +7,6 @@ require('../sass/soldier-animation.scss')
 
 
 export default class Soldier extends React.Component {
-
-
     
 
     render() {

@@ -1,11 +1,13 @@
 .robot-container {
     position:absolute;
     bottom:15%;
+    display: block;
     left:2000px;
     height: 500px;
     width: 200px;
     transform-origin: center center;
     z-index: 4;
+    transition:linear;
 
     * {
         position:absolute;
@@ -377,10 +379,6 @@
         transform-origin: center top;
         transform: rotate(-15deg);
         box-shadow: 0px 2px 7px #000;
-
-
-
-
         
     .wind-container {
         display: flex;
@@ -407,8 +405,6 @@
         }
 
     }
-
-
 
 }
 }
