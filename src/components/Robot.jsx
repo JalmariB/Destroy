@@ -41,7 +41,6 @@ export default class Robot extends React.Component {
             backgroundColor: this.state.color
         }
 
-
         return (
 
             <section id={this.state.id} style={robotSpeedStyle} className="robot-container" onMouseEnter={this.props.aim} onMouseLeave={this.props.defaultAim} onMouseDown={this.props.shoot} onMouseUp={this.props.stopShooting}>
@@ -68,7 +67,6 @@ export default class Robot extends React.Component {
                             <span></span>
                             <span></span>
                         </div>
-
                     </div>
                 </section>
                 <div className="rb-torso"></div>
@@ -85,7 +83,6 @@ export default class Robot extends React.Component {
                             <div className="wind"></div>
                             <div className="wind"></div>
                         </div>
-
                     </div>
                 </div>
             </section>

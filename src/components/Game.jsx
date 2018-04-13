@@ -24,7 +24,6 @@ export default class Game extends Component {
         this.fired = false;
     }
 
-//vaihda function nimi
     count() {
         var newStateLeft =  this.props.mainState.left - 10000
         this.props.handleMovementState(newStateLeft)
@@ -40,7 +39,7 @@ export default class Game extends Component {
     restartGame() {
         this.props.handleRestartGame();
     }
-    //deal with this
+    //WIP
     checkAreAllRobotsDead() {
         if ($('.robot-container').length === 0) {
         }
@@ -66,7 +65,7 @@ export default class Game extends Component {
         let self = this;
         setInterval(function () {
             self.checkAreAllRobotsDead();
-            self.checkCollision();
+            /* self.checkCollision(); */
 
         }, 20);
     }
@@ -88,7 +87,7 @@ export default class Game extends Component {
             $('.right-leg-thigh').addClass('right-leg-thigh-animation')
             $('.right-leg-calf').addClass('right-leg-calf-animation')
             $('.right-leg-foot').addClass('right-leg-foot-animation')
-            /* left leg */
+
             $('.left-leg-thigh').addClass('left-leg-thigh-animation')
             $('.left-leg-calf').addClass('left-leg-calf-animation')
             $('.left-leg-foot').addClass('left-leg-foot-animation')
@@ -107,7 +106,6 @@ export default class Game extends Component {
             $('.right-leg-calf').removeClass('right-leg-calf-animation')
             $('.right-leg-foot').removeClass('right-leg-foot-animation')
 
-            /* left leg */
             $('.left-leg-thigh').removeClass('left-leg-thigh-animation')
             $('.left-leg-calf').removeClass('left-leg-calf-animation')
             $('.left-leg-foot').removeClass('left-leg-foot-animation')        
@@ -174,7 +172,6 @@ export default class Game extends Component {
         $('.hit-2').addClass('hit-animation-2')
         $('.hit-3').addClass('hit-animation-3')
         $('.hit-4').addClass('hit-animation-4')
-       /*  $('.blast').addClass('blast-animation')    */
     }
  
     removeHitAnimation(){
@@ -182,9 +179,7 @@ export default class Game extends Component {
         $('.hit-2').removeClass('hit-animation-2')
         $('.hit-3').removeClass('hit-animation-3')
         $('.hit-4').removeClass('hit-animation-4')
-       /*  $('.blast').removeClass('blast-animation') */
     }
-
 
     shoot() {
         var audioElement = document.getElementById('audio');
@@ -194,7 +189,6 @@ export default class Game extends Component {
         $('.gun-fire-container').addClass('gun-fire-animation');
         $('.chell').addClass('chell-animation')
         $('.hands-container').addClass('hands-animation-shooting');
-       /*  this.showGameOverInfo() */
     }
     stopShooting() {
        $('.hands-container').removeClass('hands-animation-shooting') 
@@ -208,8 +202,6 @@ export default class Game extends Component {
         document.addEventListener("mousedown", this.shoot.bind(this));
         document.addEventListener("mouseup", this.stopShooting.bind(this));
         document.addEventListener("mousemove", this.aim.bind(this));
-        console.log('mount')
-        
         this.gameStartCount();
         this.gameLoop();
     }
@@ -236,13 +228,8 @@ export default class Game extends Component {
     }
     robotSpeedGenerator(){
         let randomNumber = Math.floor((Math.random() * 50) + 1);
-
         return randomNumber;
     }
-    /* speedGenerator(){
-        let randomNumber = Math.floor((Math.random() * 10) + 1);
-        return randomNumber;
-    } */
 
     renderRobotComponents(numberOfRobots) {
         let robotArray = [];
@@ -261,15 +248,10 @@ export default class Game extends Component {
         }
         return [...robotArray];
     }
-
-    collisionCheck(){
-       
-    }
    
    
     
     render() {
-        this.collisionCheck()
         const divStyle = {
             left: this.props.mainState.left,
         };
@@ -282,7 +264,6 @@ export default class Game extends Component {
                 <Background mainState={this.props.mainState} />
                 <Background mainState={this.props.mainState} />
                 <Background mainState={this.props.mainState} />
-                
             </section> 
                 <div className="hit-container">
                     <div className="hit-1"></div>

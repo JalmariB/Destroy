@@ -13,22 +13,16 @@ export default class GameOverInfo extends React.Component {
         })
     }
 
-
     render(){
-
 
         return (
             <section id="game-over-info-container">
                 <div className="content">
                     <h1>GAME OVER</h1>
                     <button className="primary-button" onClick={this.props.restartGame}>TRY AGAIN</button>
-                </div>
-              
-            
+                </div>     
             </section>
 
         )
     }
-
-
 }

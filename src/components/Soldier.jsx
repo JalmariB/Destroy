@@ -3,7 +3,7 @@ import { component } from 'react';
 
 require('../sass/soldier.scss');
 require('../sass/animation.scss');
-require('../sass/soldier-animation.scss')
+require('../sass/soldier-animation.scss');
 
 
 export default class Soldier extends React.Component {

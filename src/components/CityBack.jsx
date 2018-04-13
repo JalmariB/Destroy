@@ -3,7 +3,6 @@ import {Component} from 'react'
 
 require('../sass/background.scss');
 
-
 export default class CityBack extends Component {
 
     render () {
@@ -17,7 +16,6 @@ export default class CityBack extends Component {
                 <div className="building-5"></div>
                 <div className="building-6"></div>
                 <div className="building-7"></div>
-
                 <div className="building-8"></div>
                 <div className="building-9"></div>
                 <div className="building-10"></div>

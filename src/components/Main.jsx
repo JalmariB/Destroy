@@ -17,7 +17,6 @@ export default class Main extends Component {
     }
   }
 
-
   handleClickFromGameStart(numbersOfRobots) {
    
    this.setState({
@@ -42,7 +41,6 @@ export default class Main extends Component {
 
   render() {
     
-
     return (
      <section className="main-container">
         {this.state.showGameStartComponent ? <GameStart handleClickFromGameStart={this.handleClickFromGameStart.bind(this)}/> : null}

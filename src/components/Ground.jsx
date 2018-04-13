@@ -9,7 +9,6 @@ export default class Ground extends Component {
 render() {
     return (
         <section className="ground"> </section>
-
     );
 }
 

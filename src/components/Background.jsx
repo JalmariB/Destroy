@@ -9,19 +9,13 @@ require('../sass/background.scss');
 
 export default class Background extends Component {
 
-
-    
-
-
     render () {
     
         return(
             <section  className="game-background">
-            
                 <CityBack />
                 <CityFront />
                 <Ground />
-            
             </section>
         );
     }

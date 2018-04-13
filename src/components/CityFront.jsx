@@ -7,41 +7,10 @@ require('../sass/background.scss');
 export default class CityFront extends Component {
 
     renderWindows(){
-        for(var i = 0; i < 10; i++){
-
-            var windowColor = Math.floor((Math.random() * 4) + 1)
-
-            /* console.log('number', windowColor) */
-            
-            if (windowColor === 1) {
-                $('.window-row-container-1').append('<span class="window-dark"></span>'); 
-                         
-            }
-            else {
-                $('.window-row-container-1').append('<span class="window-light" ></span>');
-            }
-            if (windowColor === 2) {
-                console.log('2 if')
-                $('.window-row-container-2').append('<span class="window-dark"></span>');
-                
-            }
-            else {
-                $('.window-row-container-2').append('<span class="window-light" ></span>');
-            }
-            if (windowColor === 3) {
-                $('.window-row-container-3').append('<span class="window-dark"></span>');
-                
-            }
-            else {
-                $('.window-row-container-3').append('<span class="window-light" ></span>');
-            }
-           /*  else {
-                $('.window-row-container-2').append('<span><span>');
-            } */
-        }
+       
     }
     componentDidMount(){
-        this.renderWindows();
+        //this.renderWindows();
     }
 
 
