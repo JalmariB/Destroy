@@ -2,8 +2,8 @@ import React from 'react';
 import { Component } from 'react';
 import Soldier from './Soldier.jsx';
 import Robot from './Robot.jsx';
-import GameOverInfo from './GameOverInfo.jsx'
-
+import GameOverInfo from './GameOverInfo.jsx';
+import Mothership from './Mothership.jsx';
 import Background from './Background.jsx';
 
 require('../sass/main.scss');
@@ -115,12 +115,11 @@ export default class Game extends Component {
       aim() {
           var self = this;
           $(document).on("mousemove", function (event) {
-              
               var mouseXPosition = event.pageX;
               var mouseYPosition = event.pageY;
               //HUOM! KUN TÄHDÄDÄÄN ROBOTTIA NIIN TULEE ERROR, LUULTAVASTI JOHTUU VAAN Z-INDEXISTÄ
               var angle = self.countAngle(mouseXPosition, mouseYPosition);
-            if(angle < 40 && angle > -40) {
+            if(angle < 60 && angle > -60) {
 
                 $('.shooting-elements-container').css({
                     '-webkit-transform': 'rotate(' + angle + 'deg)',
@@ -131,6 +130,20 @@ export default class Game extends Component {
                 })
             }       
           }); 
+    }
+
+    countAngle(mouseXPosition, mouseYPosition){
+        const torsoLeft = $('.torso').offset().left;
+        const torsoTop = $('.torso').offset().top - 10;
+        const neighboringSide = mouseXPosition - torsoLeft;
+        const oppositeSide = mouseYPosition - torsoTop;
+        var angle = oppositeSide / neighboringSide * 100;
+
+        const radians = Math.atan2(oppositeSide, neighboringSide);
+        angle = radians * 180/Math.PI;
+        
+        return angle;
+        
     }
 
     defaultAim() {
@@ -146,14 +159,6 @@ export default class Game extends Component {
         })
     }
 
-    countAngle(mouseXPosition, mouseYPosition){
-        var offset = $('.shooting-elements-container').offset();
-        var neighboringSide = mouseXPosition - 119 ;
-        var oppositeSide = mouseYPosition - 554;
-        var angle = oppositeSide / neighboringSide * 100;
-        return angle;
-        
-    }
 
     hit(){
        var self = this; 
@@ -274,6 +279,7 @@ export default class Game extends Component {
                 </div>
                 <Soldier />
                 {(this.state.robotRender ? this.renderRobotComponents(this.props.mainState.howManyRobots) : null)} 
+                <Mothership />
             </section>
         );
     }

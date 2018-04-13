@@ -1,0 +1,190 @@
+#mothership {
+    position: absolute;
+    /* top:10%; */
+    left:10%;
+    width: 1000px;
+    z-index: 10;
+    animation: flyingMothership 3s infinite ease-in-out;
+    transform-origin: 50% 50%;
+
+    div {
+        position: absolute;
+    }
+
+    
+    .flight-deck,
+    .ship-torso,
+    .beam-container,
+    .beam-cannon {
+        left:50%;
+        border-radius: 50%;
+    }
+
+    .flight-deck {
+        height: 80px;
+        width: 400px;
+        margin-left:-200px;
+        background-color: #f5f5f5;
+        z-index: 1;
+    }
+    .flight-deck:after {
+        content: "";
+        display: block;
+        height: 80px;
+        width: 384px;
+        left: 8px;
+        background-color: #e2e2e2;
+        border-radius: 50%;
+        position: relative;
+        top: 5px;
+    }
+
+    .ship-torso {
+        top:25px;
+        height: 121px;
+        width: 1000px;
+        margin-left: -500px;
+        background-color: #4d4d4d;
+        border-top: 30px solid #aaaaaa;
+        z-index: 2;
+
+        div {
+            border-radius:50%;
+
+            .light {
+                background-color: #f1f1f1;
+                box-shadow: 0 1px 30px 3px #a6e6fa;
+                
+            }
+        }
+        .light-left {
+            height: 36px;
+            width: 31px;
+            /* border-left: 57px solid #222; */
+            background-color: #222;
+            left: 198px;
+            top: -12px;
+
+            .light{
+                height: 30px;
+                width: 25px;
+                top: 3px;
+                left: 4px;
+            }
+            
+        }
+        .light-center {
+            height: 36px;
+            width: 36px;
+            margin-left:-18px;
+            left:50%;
+            background-color: #222;
+            top: -16px;
+
+            .light {
+                height: 30px;
+                width: 30px;
+                top: 3px;
+                left: 50%;
+                margin-left:-15px;
+            }
+        }
+
+        .light-right {
+            height: 36px;
+            width: 31px;
+            background-color: #222;
+            right: 198px;
+            top: -12px;
+            .light {
+                height: 30px;
+                width: 25px;
+                top: 3px;
+                right: 4px;
+            }
+        }
+        
+    }
+    .beam-container {
+        top:100px;
+        width: 500px;
+        height: 60px;
+        margin-left:-250px;
+        z-index: 3;
+        background-color: #222;
+
+        .beam-cannon {
+            top:30px;
+            width: 400px;
+            height: 30px;
+            margin-left:-200px;
+            z-index: 3;
+            box-shadow: 0 1px 10px 4px #a6e6fa;
+            background-color: #e9e9e9;
+            /* box-shadow: 0 1px 30px 3px #a6e6fa; */
+            animation: beamCanonActivation 2s forwards;
+            animation-delay: 3s;
+        }
+
+        .beam-light-container {
+            width: 370px;
+            height: 0px;
+            left:50%;
+            top:50px;
+            margin-left:-185px;
+            background: linear-gradient(180deg, #ffffff 10%, transparent 100%);
+            /* box-shadow: 0 0 10px 10px #ffffff; */
+            animation:beamShot .4s forwards ease-in-out;
+            animation-delay: 5s;
+            opacity:0;
+            border-left:2px solid rgba(222, 222, 222, .1);
+            border-right:2px solid rgba(222, 222, 222, .1);
+        }
+   
+
+    }
+    .beam-container:hover {
+        .beam-light-container{
+            
+        }
+    }
+
+}
+@keyframes flyingMothership {
+    0%{
+        top:2%;
+        transform: rotate(-1deg);
+    }
+    50%{
+        top:4%;
+        transform: rotate(0deg);
+    }
+    100% {
+        top:2%;
+        transform: rotate(-1deg);
+    }
+}
+
+@keyframes beamShot {
+    0%{
+        height: 0px;
+        /* border:0px solid #fff; */
+    }
+    50%{
+        /* border:3px solid #fff; */
+    }
+    100% {
+        height: 650px;
+        opacity:.7;
+    }
+}
+@keyframes beamCanonActivation {
+    0% {
+        box-shadow: 0 1px 10px 4px #a6e6fa;
+        background-color: #e9e9e9;
+    }
+    100% {
+        background-color: #f1f1f1;
+        box-shadow: 0 1px 30px 10px #a6e6fa;
+    }
+}

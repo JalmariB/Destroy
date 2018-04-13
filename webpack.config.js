@@ -12,7 +12,7 @@ module.exports = {
     entry: './src/index.js',
     resolve: {
       alias: {
-        //kikkeli: path.resolve(__dirname, 'src/sass/main.scss')
+        style: path.resolve(__dirname, 'src/sass/')
       }
     },
     output: {
