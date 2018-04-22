@@ -5,6 +5,8 @@ import Robot from './Robot.jsx';
 import GameOverInfo from './GameOverInfo.jsx';
 import Mothership from './Mothership.jsx';
 import Background from './Background.jsx';
+import Bullets from './Bullets.jsx';
+import Moon from './Moon.jsx';
 
 require('../sass/main.scss');
 require('../sass/hit.scss');
@@ -19,7 +21,8 @@ export default class Game extends Component {
         super(props);
         this.state = ({
             robotRender: true,
-            gameOver:false
+            gameOver:false,
+            bullet:14,
         });
         this.fired = false;
     }
@@ -186,6 +189,15 @@ export default class Game extends Component {
         $('.hit-4').removeClass('hit-animation-4')
     }
 
+    setAmmoState(){
+      
+        this.setState({
+            bullet:this.state.bullet - 1
+
+        })
+    }
+  
+
     shoot() {
         var audioElement = document.getElementById('audio');
         audioElement.pause();
@@ -194,6 +206,28 @@ export default class Game extends Component {
         $('.gun-fire-container').addClass('gun-fire-animation');
         $('.chell').addClass('chell-animation')
         $('.hands-container').addClass('hands-animation-shooting');
+
+        const lastBulletComponentId = $('.bullet').last()[0];
+        
+
+        
+ /*        if ($('.bullet').length == 0) {
+            console.log('if true')
+            document.removeEventListener("mousedown", this.shoot());
+        }
+        else {
+            lastBulletComponentId.remove();
+        } */
+        this.setAmmoState();
+        console.log('lenght', this.state.bullet);
+        if (this.state.bullet == 0) {
+            console.log('if true')
+            document.removeEventListener("mousedown", this.shoot.bind(this));
+        }
+        else {
+            lastBulletComponentId.remove();
+        }
+       
     }
     stopShooting() {
        $('.hands-container').removeClass('hands-animation-shooting') 
@@ -246,15 +280,12 @@ export default class Game extends Component {
                 color: this.robotColorGenerator(),
                 startPosition: this.robotStartPositionGenerator(),
                 speed: this.robotSpeedGenerator(),
-
             }
 
             robotArray.push(<Robot  aim={this.aim} robotInitValues={robotInitValues} />)
         }
         return [...robotArray];
     }
-   
-   
     
     render() {
         const divStyle = {
@@ -262,13 +293,17 @@ export default class Game extends Component {
         };
 
         return (
-            <section style={divStyle} className="game-container">    
+            <section style={divStyle} className="game-container">  
+           <Bullets />
+            
             <audio id="audio" ref="audio_tag" src="src/audio/shot.mp3" />
                 {this.state.gameOver ? <GameOverInfo restartGame={this.restartGame.bind(this)} /> : null}
             <section className="background-container">
                 <Background mainState={this.props.mainState} />
                 <Background mainState={this.props.mainState} />
                 <Background mainState={this.props.mainState} />
+                <Background mainState={this.props.mainState} />
+                <Moon />
             </section> 
                 <div className="hit-container">
                     <div className="hit-1"></div>

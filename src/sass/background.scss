@@ -1,6 +1,11 @@
 .background-container {
  display: flex;
 position: relative;
+background: #00495b; 
+background: -moz-linear-gradient(top, #00495b 0%, #009ec3 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, #00495b 0%,#009ec3 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, #00495b 0%,#009ec3 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00495b', endColorstr='#009ec3',GradientType=0 ); /* IE6-9 */
     section {
         flex: 1;
     }
@@ -10,12 +15,8 @@ position: relative;
     min-width: 1920px;
     /* height: 1000px; */
     z-index: 1;
-    background-color: #333;
-background: #00495b; 
-background: -moz-linear-gradient(top, #00495b 0%, #009ec3 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(top, #00495b 0%,#009ec3 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to bottom, #00495b 0%,#009ec3 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00495b', endColorstr='#009ec3',GradientType=0 ); /* IE6-9 */
+    background-color: transparent;
+
 
 
 .city-back-container {
