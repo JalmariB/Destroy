@@ -36,9 +36,9 @@
 }
 
 .robot-down {
-      -webkit-animation-name:robot-down; 
+      -webkit-animation-name:robotDown; 
     -webkit-animation-duration:1s; 
-    animation-name:robot-down;
+    animation-name:robotDown;
     animation-duration:1s;
     animation-delay:.5s;
     animation-fill-mode: forwards;
@@ -55,6 +55,23 @@
     box-shadow: none !important;
 }
 }
+
+.render-robot-from-mothership-animation {
+    animation:fromMotherShip 2s forwards;
+    animation-delay: 1s;
+    opacity: 0;
+}
+
+
+@keyframes fromMotherShip {
+    0% {
+        opacity:0;
+    }
+    100% {
+       opacity:1;
+        
+    }
+}
 /* .robot-face-down {
       -webkit-animation-name:robot-face-down; 
     -webkit-animation-duration: 1s; 
@@ -63,6 +80,8 @@
     animation-delay:2s;
     animation-fill-mode: forwards;
 } */
+
+
 @keyframes occipitalFly {
     0%{
         transform: rotate(0deg);
@@ -82,7 +101,7 @@
 
 }
 
-@keyframes robot-down {
+@keyframes robotDown {
     0%{
 
     }
@@ -95,9 +114,14 @@
         opacity: 1;
 
     }
-    100%{
-        transform: rotate(-76deg);
+    90% {
+        transform: rotate(-76deg);  
         bottom:-150px;
+        opacity: 0;
+    }
+    100%{
+        visibility: hidden;
+         bottom:-150px;
         opacity: 0;
     }
 }

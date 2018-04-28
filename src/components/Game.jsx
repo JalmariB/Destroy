@@ -23,6 +23,8 @@ export default class Game extends Component {
             robotRender: true,
             gameOver:false,
             bullet:14,
+            allRobotsAreDead:false,
+            motherShipsRobots:0
         });
         this.fired = false;
     }
@@ -43,11 +45,34 @@ export default class Game extends Component {
         this.props.handleRestartGame();
     }
     //WIP
-    checkAreAllRobotsDead() {
-        if ($('.robot-container').length === 0) {
-        }
+    setStateAllRobotsAreDead(){
+       /*  console.log('set state') */
+        this.setState({
+            allRobotsAreDead:true,
+            motherShipsRobots:this.state.motherShipsRobots + 1
+            
+        })
     }
-    soldierDeath(){
+    beamLightAnimation() {
+        $('.beam-light-container').removeClass('beam-animation');
+        setTimeout(function () {
+            $('.beam-light-container').addClass('beam-animation');
+        }, 10);
+    }
+    checkAreAllRobotsDead() {
+        let howManyRobotsHasClassHeadShot = document.getElementsByClassName('headshot').length;
+      
+        if (howManyRobotsHasClassHeadShot === this.props.mainState.howManyRobots + this.state.motherShipsRobots - 1) {
+            let self = this;
+            this.beamLightAnimation();
+            setTimeout(function(){
+                self.setStateAllRobotsAreDead();
+            }, 3500);
+            
+        }   
+    }
+
+    soldierDeath() {
         let self = this;
         $('#shooter-container').addClass('soldier-death')
         setTimeout(function(){
@@ -55,6 +80,7 @@ export default class Game extends Component {
         },2000);
         
     }
+
     checkCollision(){
         let self = this;
         $(".robot-container").each(function () {
@@ -64,11 +90,12 @@ export default class Game extends Component {
             }
         });
     }
+
     gameLoop() {
         let self = this;
         setInterval(function () {
-            self.checkAreAllRobotsDead();
-            /* self.checkCollision(); */
+            
+          /*   self.checkCollision();  */
 
         }, 20);
     }
@@ -104,7 +131,6 @@ export default class Game extends Component {
         let stopWalkPosition = $('.game-container').offset().left;
         this.props.handleMovementState(stopWalkPosition)
         if (key.key == 'd') {
-            
             $('.right-leg-thigh').removeClass('right-leg-thigh-animation')
             $('.right-leg-calf').removeClass('right-leg-calf-animation')
             $('.right-leg-foot').removeClass('right-leg-foot-animation')
@@ -209,24 +235,15 @@ export default class Game extends Component {
 
         const lastBulletComponentId = $('.bullet').last()[0];
         
-
-        
- /*        if ($('.bullet').length == 0) {
-            console.log('if true')
-            document.removeEventListener("mousedown", this.shoot());
-        }
-        else {
-            lastBulletComponentId.remove();
-        } */
         this.setAmmoState();
-        console.log('lenght', this.state.bullet);
         if (this.state.bullet == 0) {
-            console.log('if true')
             document.removeEventListener("mousedown", this.shoot.bind(this));
         }
         else {
             lastBulletComponentId.remove();
         }
+
+        this.checkAreAllRobotsDead();
        
     }
     stopShooting() {
@@ -243,6 +260,8 @@ export default class Game extends Component {
         document.addEventListener("mousemove", this.aim.bind(this));
         this.gameStartCount();
         this.gameLoop();
+        
+        
     }
   
     robotIdGenerator(){
@@ -271,6 +290,7 @@ export default class Game extends Component {
     }
 
     renderRobotComponents(numberOfRobots) {
+        
         let robotArray = [];
 
         for (var i = 0; i < numberOfRobots; i++) {
@@ -278,24 +298,33 @@ export default class Game extends Component {
             let robotInitValues = {
                 id: this.robotIdGenerator(),
                 color: this.robotColorGenerator(),
-                startPosition: this.robotStartPositionGenerator(),
+                startPosition: !this.state.allRobotsAreDead ? this.robotStartPositionGenerator() : this.positionOfMotherShip(),
                 speed: this.robotSpeedGenerator(),
+               
             }
-
-            robotArray.push(<Robot  aim={this.aim} robotInitValues={robotInitValues} />)
+//AIM FUNCTION PASSAAMINEN TURHAA?
+            robotArray.push(<Robot allRobotsAreDead={this.state.allRobotsAreDead}   aim={this.aim} robotInitValues={robotInitValues} />)
         }
         return [...robotArray];
+    }
+
+    positionOfMotherShip(){
+        //let positionLeft = $('.beam-container').offset().left + $('.beam-container').width() / 2 - $('.robot-container').width() / 2;
+        let positionLeft = 5450; 
+        return positionLeft;
+        
     }
     
     render() {
         const divStyle = {
             left: this.props.mainState.left,
         };
+       
+        
 
         return (
             <section style={divStyle} className="game-container">  
-           <Bullets />
-            
+                <Bullets />
             <audio id="audio" ref="audio_tag" src="src/audio/shot.mp3" />
                 {this.state.gameOver ? <GameOverInfo restartGame={this.restartGame.bind(this)} /> : null}
             <section className="background-container">
@@ -315,8 +344,8 @@ export default class Game extends Component {
                 <Soldier />
                 {(this.state.robotRender ? this.renderRobotComponents(this.props.mainState.howManyRobots) : null)} 
                 <Mothership />
+                {(this.state.allRobotsAreDead || this.state.motherShipsRobots > 0 ? this.renderRobotComponents(this.state.motherShipsRobots) : null)} 
             </section>
         );
     }
-
 }

@@ -18,6 +18,14 @@ export default class Robot extends React.Component {
         this.occipitalColor = '#ce3a3a';
         
     }
+  /*   RobotFromMotherShip(){
+        if(this.props.allRobotsAreDead){
+            
+           
+            
+        }
+        
+    } */
 
     headShot(e) {
         var $current = $(e.currentTarget);
@@ -31,18 +39,20 @@ export default class Robot extends React.Component {
             $current.parent('.robot-container').find('.calf').addClass('calf-rotate');
         }
     }
+    
+   
 
     render() {
-        let robotSpeedStyle = {
+        const robotSpeedStyle = {
             transition: this.state.speed + 's all linear',
             left: this.state.startPosition
         }
+      
         let color = {
             backgroundColor: this.state.color
         }
 
         return (
-
             <section id={this.state.id} style={robotSpeedStyle} className="robot-container" onMouseEnter={this.props.aim} onMouseLeave={this.props.defaultAim} onMouseDown={this.props.shoot} onMouseUp={this.props.stopShooting}>
                 <div className="rb-head-container" onClick={this.headShot} >
                     <div className="rb-head">

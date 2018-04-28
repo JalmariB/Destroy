@@ -125,6 +125,13 @@
             animation: beamCanonActivation 2s forwards;
             animation-delay: 3s;
         }
+        .beam-animation {
+            animation:beamShot 3s forwards;
+            animation-delay: 2s;
+            opacity:0;
+            border-left:2px solid rgba(222, 222, 222, .1);
+            border-right:2px solid rgba(222, 222, 222, .1);
+        }
 
         .beam-light-container {
             width: 370px;
@@ -134,20 +141,16 @@
             margin-left:-185px;
             background: linear-gradient(180deg, #ffffff 10%, transparent 100%);
             /* box-shadow: 0 0 10px 10px #ffffff; */
-            animation:beamShot .4s forwards ease-in-out;
-            animation-delay: 5s;
-            opacity:0;
-            border-left:2px solid rgba(222, 222, 222, .1);
-            border-right:2px solid rgba(222, 222, 222, .1);
+            
         }
    
 
     }
-    .beam-container:hover {
+    /* .beam-container:hover {
         .beam-light-container{
             
         }
-    }
+    } */
 
 }
 @keyframes flyingMothership {
@@ -169,13 +172,27 @@
     0%{
         height: 0px;
         /* border:0px solid #fff; */
+        background: linear-gradient(180deg, #ffffff 10%, transparent 100%);
     }
-    50%{
-        /* border:3px solid #fff; */
-    }
-    100% {
+     25%{
         height: 650px;
         opacity:.7;
+        background: linear-gradient(180deg, #ffffff 45%, transparent 100%);
+    }
+    50%{
+       /*  height: 650px; */
+        opacity:1;
+        background: linear-gradient(180deg, #ffffff 80%, transparent 100%);
+    }
+    75% {
+        height: 650px; 
+        opacity:.7;
+        background: linear-gradient(180deg, #ffffff 45%, transparent 100%);
+    }
+    100% {
+        height: 0;
+        opacity: 0;
+        background: linear-gradient(180deg, #ffffff 10%, transparent 100%);
     }
 }
 @keyframes beamCanonActivation {
