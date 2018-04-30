@@ -27,6 +27,7 @@ body {
     position: absolute;
     bottom: 0;
     transition:60s all;
+    overflow: hidden;
 
     #audio {
       display: none;

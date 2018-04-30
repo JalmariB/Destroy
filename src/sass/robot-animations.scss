@@ -115,12 +115,12 @@
 
     }
     90% {
-        transform: rotate(-76deg);  
+          
         bottom:-150px;
         opacity: 0;
     }
     100%{
-        visibility: hidden;
+        transform: rotate(-76deg);
          bottom:-150px;
         opacity: 0;
     }
