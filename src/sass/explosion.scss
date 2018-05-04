@@ -1,0 +1,166 @@
+#explosion-container {
+    position: absolute;
+    height: 400px;
+    width: 400px;
+    bottom:100px;
+    z-index: 10;
+    bottom:-50px;
+    left:6300px;
+    /* opacity: 0; */
+
+    span,
+    div {
+        position: absolute;
+        top:50%;
+        left:50%;
+    }
+    .ex-line {
+        background-color: #fff;
+        height: 1px;
+        width: 450px;
+        height: 30px;
+        border-radius:50%;
+        animation:lineExplosion 6s forwards linear;
+        animation-delay:13s;
+        z-index: 1;
+        box-shadow: 0 0 20px #fff;
+        margin-top:-15px;
+        margin-left:-225px;
+        opacity: 0;
+    }
+    .center-ex {
+        position: relative;
+        background-color: #cacaca;
+        border-radius:50%;
+        width: 50px;
+        height: 50px;
+        z-index: 2;
+        margin-top:-25px;
+        margin-left:-25px;
+        animation:6s centerExplosion forwards linear;
+        animation-delay:13s;
+        box-shadow: 0 0 40px #fff;
+        opacity: 0;
+        
+
+        div {
+            width: 20px;
+            height: 20px;
+            background-color: #fff;
+            border-radius:50%;
+            position: absolute;
+            top:50%;
+            left:50%;
+            margin-left:-10px;
+            margin-top:-10px;
+        }
+    }
+
+
+    span {
+        width: 60px;
+        height: 50px;
+        border-top-left-radius: 30px;
+        border-bottom-right-radius: 10px;
+        background-color: #4d4d4d;
+        margin-left:-30px;
+        margin-top:-25px;
+        animation:shipPartOne 1s forwards linear;
+        animation-delay:16s;
+        opacity: 0;
+
+    }
+    span:last-child {
+        width: 120px;
+        height: 40px;
+        border-top-right-radius: 30px;
+        border-bottom-left-radius: 30px;
+        background-color: #ccc;
+        margin-left:-60px;
+        margin-top:-20px;
+        animation:shipPartTwo 1s forwards linear;
+        animation-delay:16s;
+       
+    }
+
+
+}
+
+@keyframes shipPartOne {
+    0%{
+        transform: scale(0);
+        transform: rotate(0deg);
+        left:50%;
+        top:50%;
+        opacity: 1;
+        
+    }
+   
+    100%{
+        transform: scale(2);
+        transform: rotate(360deg);
+        left:200%;
+        top:-100%;
+        opacity: 0;
+    }
+}
+@keyframes shipPartTwo {
+    0%{
+        transform: scale(0);
+        transform: rotate(0deg);
+        left:50%;
+        top:50%;
+        opacity: 1;
+    }
+    100%{
+        transform: scale(1);
+        transform: rotate(-160deg);
+        left:-60%;
+        top:-100%;
+        opacity: 0;
+    }
+}
+
+@keyframes lineExplosion {
+    0%{
+        transform: scale(0);
+        opacity:1;
+    }
+
+    49%{
+        transform: scale(0);
+    }
+    50%{
+        transform: scale(6);
+        box-shadow: 0 0 40px #fff;
+    }
+    90%{
+        transform: scale(0);
+    }
+    100%{
+        transform: scale(0);
+        opacity:1;
+    }
+}
+
+
+@keyframes centerExplosion {
+    0%{
+        background-color: #cacaca;
+        opacity:1;
+        
+    }
+
+    50%{
+        transform: scale(9);
+        background-color: #ffffff;
+        box-shadow: 0 0 50px #fff;
+       
+    }
+
+    100%{
+        background-color: #ffffff;
+        transform: scale(0);
+        opacity:1;
+    }
+}

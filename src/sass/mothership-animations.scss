@@ -1,0 +1,117 @@
+
+@keyframes flyingMothership {
+    0%{
+        top:2%;
+        transform: rotate(-1deg);
+    }
+    50%{
+        top:4%;
+        transform: rotate(0deg);
+    }
+    100% {
+        top:2%;
+        transform: rotate(-1deg);
+    }
+}
+
+@keyframes beamShot {
+    0%{
+        height: 0px;
+        /* border:0px solid #fff; */
+        background: linear-gradient(180deg, #ffffff 10%, transparent 100%);
+    }
+     25%{
+        height: 650px;
+        opacity:.7;
+        background: linear-gradient(180deg, #ffffff 45%, transparent 100%);
+    }
+    50%{
+       /*  height: 650px; */
+        opacity:1;
+        background: linear-gradient(180deg, #ffffff 80%, transparent 100%);
+    }
+    75% {
+        height: 650px; 
+        opacity:.7;
+        background: linear-gradient(180deg, #ffffff 45%, transparent 100%);
+    }
+    100% {
+        height: 0;
+        opacity: 0;
+        background: linear-gradient(180deg, #ffffff 10%, transparent 100%);
+    }
+}
+@keyframes beamCanonActivation {
+    0% {
+        box-shadow: 0 1px 10px 4px #a6e6fa;
+        background-color: #e9e9e9;
+    }
+    100% {
+        background-color: #f1f1f1;
+        box-shadow: 0 1px 30px 10px #a6e6fa;
+    }
+}
+
+
+@keyframes beamCannonDown {
+    0% {
+        
+    }
+    
+    100% {
+        background-color: #2c2c2c;
+        box-shadow: none;
+    }
+}
+
+@keyframes crash {
+    0% {
+        top:2%;
+    }
+    30% {
+        top:2%;
+    }
+    70% {
+        top:78%;
+        left:6000px;
+        transform: rotate(10deg);
+        
+    }
+    96%{
+        opacity: 1;
+    }
+    97% {
+        opacity: 0;
+    }
+    100% {
+        top:78%;
+        left:6000px;
+        transform: rotate(10deg);
+        opacity: 0;
+    }
+}
+
+ @keyframes shipLightDestroyed {
+    0% {
+        box-shadow: 0 1px 40px 3px #ffffff;
+    }
+
+    20%{
+        background-color: transparent;
+        box-shadow: none;
+        top:0;
+        transform: rotate(0deg);
+    }
+
+    50% {
+        top:400px;
+        transform: rotate(360deg);
+    }
+    
+    100% {
+        top:400px;
+        opacity: 0;
+        box-shadow: none;
+        background-color: transparent;
+    }
+} 

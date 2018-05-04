@@ -3,10 +3,12 @@ import { Component } from 'react';
 import Soldier from './Soldier.jsx';
 import Robot from './Robot.jsx';
 import GameOverInfo from './GameOverInfo.jsx';
+import GameWonInfo from './GameWonInfo.jsx';
 import Mothership from './Mothership.jsx';
 import Background from './Background.jsx';
 import Bullets from './Bullets.jsx';
 import Moon from './Moon.jsx';
+import Explosion from './Explosion.jsx';
 
 require('../sass/main.scss');
 require('../sass/hit.scss');
@@ -22,9 +24,12 @@ export default class Game extends Component {
         this.state = ({
             robotRender: true,
             gameOver:false,
+            gameWon:false,
             bullet:14,
             allRobotsAreDead:false,
-            motherShipsRobots:0
+            motherShipsRobots:0,
+            explode:false
+            
         });
         this.fired = false;
     }
@@ -34,10 +39,20 @@ export default class Game extends Component {
         this.props.handleMovementState(newStateLeft)
 
     }
+    setStateExplode(){
+        this.setState({
+            explode:true
+        })
+    }
     showGameOverInfo() {
 
         this.setState({
             gameOver: true
+        })
+    }
+    showGameWonInfo(){
+        this.setState({
+            gameWon:true
         })
     }
 
@@ -327,6 +342,7 @@ export default class Game extends Component {
                 <Bullets />
             <audio id="audio" ref="audio_tag" src="src/audio/shot.mp3" />
                 {this.state.gameOver ? <GameOverInfo restartGame={this.restartGame.bind(this)} /> : null}
+                {this.state.gameWon ? <GameWonInfo restartGame={this.restartGame.bind(this)}  /> : null}
             <section className="background-container">
                 <Background mainState={this.props.mainState} />
                 <Background mainState={this.props.mainState} />
@@ -343,8 +359,9 @@ export default class Game extends Component {
                 </div>
                 <Soldier />
                 {(this.state.robotRender ? this.renderRobotComponents(this.props.mainState.howManyRobots) : null)} 
-                <Mothership />
+                <Mothership setStateExplode={this.setStateExplode.bind(this)} showGameWonInfo={this.showGameWonInfo.bind(this)}/>
                 {(this.state.allRobotsAreDead || this.state.motherShipsRobots > 0 ? this.renderRobotComponents(this.state.motherShipsRobots) : null)} 
+                {(this.state.explode ? <Explosion />: null) }
             </section>
         );
     }

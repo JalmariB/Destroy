@@ -1,19 +1,22 @@
-#game-over-info-container {
+#info-container {
     position: absolute;
     width: 100%;
     height: 100%;
     background-color: #00495b;
     text-align: center;
-    z-index: 6;
+    z-index: 1000;
     opacity: .85;
     color:#fff;
+   
 
     .content {
         position: fixed;
-        width: 300px;
+        width: 600px;
+        height: 500px;
+        top:50%;
+        margin-top:-250px;
         left:50%;
-        margin-left:-150px;
-        top:25%;
+        margin-left:-300px;
 
          h1 {
              font-size: 3em;
@@ -31,14 +34,4 @@
          }
     }
 }
-/* 
-#game-over-info-container:hover {
-
-
-
-    h1,
-    button {
-        opacity: 1;
-    }
-} */
 
