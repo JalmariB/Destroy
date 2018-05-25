@@ -28,11 +28,18 @@ export default class Mothership extends Component {
     checkIfAllLightAreDestroyed(){
         let animationClassLenght = $('.ship-light-destroyed-animation').length
         if(animationClassLenght === 3) {
+        
+            this.props.mothershipDestroyed();
             this.crash();
+            
+           /*  this.props.beamLightAnimation().stopPropagation(); */
+           /*  this.props.checkAreAllRobotsDead.stopPropagation(); */
+           
+           
             this.props.setStateExplode();
             let self = this;
             setTimeout(function(){
-                self.props.showGameWonInfo()
+                self.props.showGameWonInfo();
             },17000);
         }
     }

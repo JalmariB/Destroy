@@ -6,8 +6,7 @@ require('../sass/animation.scss');
 require('../sass/soldier-animation.scss');
 
 
-export default class Soldier extends React.Component {
-    
+export default class Soldier extends React.Component {  
 
     render() {
   
@@ -25,8 +24,7 @@ export default class Soldier extends React.Component {
                     <div className="hands-container">
                         <div className="right-hand"></div>
                         <div className="gun">
-                            <div className="chell-container">
-                                <div className="chell"></div>
+                            <div className="shell-container">   
                             </div>
                             <div className="gun-pipe">
                                 <div className="gun-fire-container">

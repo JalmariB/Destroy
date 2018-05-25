@@ -30,6 +30,7 @@ export default class Main extends Component {
     this.setState({
       showGameStartComponent: true,
       showGameComponent: false,
+      
     })
   }
   handleMovementState(r) {
