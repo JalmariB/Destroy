@@ -34,11 +34,10 @@ export default class Robot extends React.Component {
             $current.parent('.robot-container').find('.calf').addClass('calf-rotate');
         }
         setTimeout(() => {
-            $current.parent().remove()
+            $current.parent().remove();
         }, 6000);
         
     }
-
 
     render() {
         const robotSpeedStyle = {
