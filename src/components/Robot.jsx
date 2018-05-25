@@ -18,10 +18,10 @@ export default class Robot extends React.Component {
         this.occipitalColor = '#ce3a3a';
     }
 
-    handleRobotDeath(e){
-        !this.props.outOfammo ? this.headShot(e) : null;
+    handleRobotDeath(e) {
+        !this.props.outOfAmmo ? this.headShot(e) : null;
     }
-    
+
     headShot(e) {
         var $current = $(e.currentTarget);
         if (!$current.hasClass('headshot')) {
@@ -33,7 +33,12 @@ export default class Robot extends React.Component {
             $current.parent('.robot-container').find('.wind-container').hide();
             $current.parent('.robot-container').find('.calf').addClass('calf-rotate');
         }
+        setTimeout(() => {
+            $current.parent().remove()
+        }, 6000);
+        
     }
+
 
     render() {
         const robotSpeedStyle = {

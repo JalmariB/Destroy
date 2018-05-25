@@ -11,8 +11,8 @@ import Moon from './Moon.jsx';
 import Explosion from './Explosion.jsx';
 
 require('../sass/main.scss');
-require('../sass/hit.scss');
-require('../sass/hit-animation.scss')
+/* require('../sass/hit.scss');
+require('../sass/hit-animation.scss') */
 require('../sass/background.scss')
 
 
@@ -22,7 +22,7 @@ export default class Game extends Component {
     constructor(props) {
         super(props);
         this.state = ({
-            robotRender: true,
+            /* robotRender: true, */
             gameOver: false,
             gameWon: false,
             bullet: 14,
@@ -30,14 +30,14 @@ export default class Game extends Component {
             motherShipsRobots: 0,
             explode: false,
             motherShipsDestroyed:false,
-            outOfammo: false
+            outOfAmmo: false
         });
         this.fired = false;
     }
 
     count() {
         var newStateLeft = this.props.mainState.left - 10000
-        this.props.handleMovementState(newStateLeft)
+        this.props.handleMovementState(newStateLeft);
     }
 
     setStateExplode() {
@@ -61,7 +61,7 @@ export default class Game extends Component {
     mothershipDestroyed(){
         this.setState({
             motherShipsDestroyed:true,
-            robotRender: false
+         /*    robotRender: false */
         })
     }
 
@@ -70,9 +70,10 @@ export default class Game extends Component {
     }
 
     setStateAllRobotsAreDead() {
+        console.log('all ro')
         this.setState({
             allRobotsAreDead: true,
-            motherShipsRobots: this.state.motherShipsRobots + 1
+           /*  motherShipsRobots: 1 */
 
         })
     }
@@ -144,7 +145,6 @@ export default class Game extends Component {
             $('.left-leg-thigh').addClass('left-leg-thigh-animation')
             $('.left-leg-calf').addClass('left-leg-calf-animation')
             $('.left-leg-foot').addClass('left-leg-foot-animation')
-
         }
     }
 
@@ -211,7 +211,7 @@ export default class Game extends Component {
     }
 
 
-    hit() {
+   /*  hit() {
         var self = this;
         $(document).on("mousemove", function (e) {
             var mouseXPosition = e.pageX;
@@ -224,7 +224,7 @@ export default class Game extends Component {
                 left: mouseXPosition
             })
         });
-    }
+    } */
 
     setAmmoState() {
 
@@ -234,7 +234,7 @@ export default class Game extends Component {
     }
     setOutOfAmmo(){
         this.setState({
-            outOfammo:true
+            outOfAmmo:true
         })
     }
     handleShoot(){
@@ -267,6 +267,7 @@ export default class Game extends Component {
         this.setAmmoState();
         lastBulletComponentId.remove();
         this.checkAreAllRobotsDead();
+
     }
    
     stopShooting() {
@@ -289,6 +290,7 @@ export default class Game extends Component {
         let id = d.getTime();
         return id;
     }
+
     keyGenerator() {
         let d = new Date();
         let key = d.getTime();
@@ -310,7 +312,7 @@ export default class Game extends Component {
     }
 
     renderRobotComponents(numberOfRobots) {
-
+        
         let robotArray = [];
 
         for (var i = 0; i < numberOfRobots; i++) {
@@ -321,7 +323,7 @@ export default class Game extends Component {
                 speed: this.robotSpeedGenerator(),
 
             }
-            robotArray.push(<Robot outOfammo={this.state.outOfammo} allRobotsAreDead={this.state.allRobotsAreDead}  robotInitValues={robotInitValues} />)
+            robotArray.push(<Robot outOfAmmo={this.state.outOfAmmo} allRobotsAreDead={this.state.allRobotsAreDead}  robotInitValues={robotInitValues} />)
         }
         return [...robotArray];
     }
@@ -329,7 +331,6 @@ export default class Game extends Component {
     positionOfMotherShip() {
         let positionLeft = 5450;
         return positionLeft;
-
     }
 
     render() {
@@ -353,9 +354,9 @@ export default class Game extends Component {
                     <Moon />
                 </section>
                 <Soldier />
-                {(this.state.robotRender ? this.renderRobotComponents(this.props.mainState.howManyRobots) : null)}
+                {(!this.state.allRobotsAreDead ? this.renderRobotComponents(this.props.mainState.howManyRobots) : null)}
                 <Mothership mothershipDestroyed={this.mothershipDestroyed.bind(this)} checkAreAllRobotsDead={this.checkAreAllRobotsDead} beamLightAnimation={this.beamLightAnimation} setStateExplode={this.setStateExplode.bind(this)} showGameWonInfo={this.showGameWonInfo.bind(this)} />
-                {(this.state.allRobotsAreDead || this.state.motherShipsRobots > 0 ? this.renderRobotComponents(this.state.motherShipsRobots) : null)}
+                {(this.state.allRobotsAreDead ? this.renderRobotComponents(1) : null)}
                 {(this.state.explode ? <Explosion /> : null)}
             </section>
         );
